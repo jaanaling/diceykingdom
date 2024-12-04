@@ -1,0 +1,356 @@
+[
+    {
+      "id": 1,
+      "name": "Ticket to Ride",
+      "genre": ["Family", "Strategy"],
+      "difficulty": "Medium",
+      "players": "2-5",
+      "age": "8+",
+      "playTime": "30-60 minutes",
+      "description": "Ticket to Ride is a cross-country train adventure where players collect cards of various train types to claim railway routes connecting cities throughout North America. The longer the routes, the more points they earn. Additional points come from completing Destination Tickets—goal cards that connect distant cities; and by building the longest continuous railway. Players must strategize how to best claim routes while preventing opponents from completing their goals.",
+      "image": "assets/images/Ticket to Ride.png",
+      "rules": "1. Setup: Each player starts with a set of train cards and a few Destination Tickets. Place trains on the board as specified.\n2. Gameplay: On a turn, players can draw train cards, claim routes, or pick new Destination Tickets.\n3. Scoring: Points are scored by claiming routes and completing Destination Tickets. A long route scores more than multiple short ones.\n4. Endgame: The game ends when a player has 2 or fewer trains left. Bonus points are awarded for the longest continuous route.",
+      "challenge": {
+        "name": "Longest Route Master",
+        "text": "Build the longest continuous route in a single game and secure your victory!",
+        "difficulty": 3
+      }
+    },
+    {
+      "id": 2,
+      "name": "Carcassonne",
+      "genre": ["Family", "Strategy"],
+      "difficulty": "Easy",
+      "players": "2-5",
+      "age": "7+",
+      "playTime": "30-45 minutes",
+      "description": "Carcassonne is a tile-placement game where players draw and place tiles featuring southern French landscape. These tiles depict cities, roads, monasteries, and fields. Players strategically place their followers—knights, monks, thieves, or farmers—to gain points. The game requires a balance of offensive and defensive tactics as players try to outmaneuver their opponents.",
+      "image": "assets/images/Carcassonne.png",
+      "rules": "1. Setup: Shuffle tiles and place the starting tile in the center. Players take turns drawing tiles.\n2. Gameplay: On their turn, a player places a tile, ensuring it fits adjacent tiles. They can optionally place a follower on the tile.\n3. Scoring: Completed cities, roads, and monasteries are scored immediately, while fields score at the end of the game.\n4. Endgame: The game ends when all tiles are placed. Players tally their scores, and the highest score wins.",
+      "challenge": {
+        "name": "City Builder Extraordinaire",
+        "text": "Complete the largest city in the game and dominate the board!",
+        "difficulty": 2
+      }
+    },
+    {
+      "id": 3,
+      "name": "Gloomhaven",
+      "genre": ["Adventure", "Strategy", "Cooperative"],
+      "difficulty": "Hard",
+      "players": "1-4",
+      "age": "14+",
+      "playTime": "90-120 minutes",
+      "description": "Gloomhaven is a tactical combat game in a persistent world of shifting motives. Players take on the role of adventurers with unique skills, exploring dark dungeons, battling terrifying creatures, and crafting a story through decisions that shape the game world. With a rich narrative and challenging missions, Gloomhaven offers a deeply immersive experience.",
+      "image": "assets/images/Gloomhaven.png",
+      "rules": "1. Setup: Choose a scenario and set up the map. Players select characters and prepare their unique decks.\n2. Gameplay: Each turn, players simultaneously choose cards to perform actions, coordinating their strategies to defeat enemies and achieve objectives.\n3. Scoring: Players earn experience and gold by completing scenarios and objectives. Characters progress with each successful mission.\n4. Endgame: The campaign progresses over many sessions. Players retire characters after completing personal goals, unlocking new content and characters.",
+      "challenge": {
+        "name": "Dungeon Master",
+        "text": "Complete a dungeon without taking damage or losing a character.",
+        "difficulty": 5
+      }
+    },{
+        "id": 4,
+        "name": "7 Wonders",
+        "genre": ["Strategy", "Card Game"],
+        "difficulty": "Medium",
+        "players": "2-7",
+        "age": "10+",
+        "playTime": "30 minutes",
+        "description": "7 Wonders is a card drafting game where players build one of the great ancient civilizations over three ages. Each player develops their city by drafting cards to construct buildings, develop military strength, gather resources, or focus on science and culture. Balancing resource management with strategy is key to outpacing rivals and achieving victory.",
+        "image": "assets/images/7 Wonders.png",
+        "rules": "1. Setup: Each player is assigned a Wonder board. Shuffle Age decks and distribute starting resources.\n2. Gameplay: Players draft cards simultaneously, playing one card per turn to improve their city. Cards can be used for building, trading, or discarding for coins.\n3. Scoring: At the end of three ages, players tally points from military strength, wonders, culture, science, and coins.\n4. Endgame: The player with the highest total score is declared the winner.",
+        "challenge": {
+          "name": "Architect of Wonders",
+          "text": "Complete your Wonder while scoring the highest in culture.",
+          "difficulty": 4
+        }
+      },
+      {
+        "id": 5,
+        "name": "Azul",
+        "genre": ["Family", "Strategy"],
+        "difficulty": "Easy",
+        "players": "2-4",
+        "age": "8+",
+        "playTime": "30-45 minutes",
+        "description": "Azul is a tile-placement game where players take on the role of artisans decorating the walls of the Royal Palace of Évora. Players draft beautifully designed tiles to strategically complete patterns on their personal boards. Success depends on careful planning and blocking opponents from completing their designs.",
+        "image": "assets/images/Azul.png",
+        "rules": "1. Setup: Each player receives a player board. Tiles are placed into factories, and the starting player is chosen.\n2. Gameplay: On their turn, a player selects tiles of one color from a factory and places them in a row on their board.\n3. Scoring: Points are scored based on the placement of tiles. Bonuses are given for completed rows, columns, and sets of one color.\n4. Endgame: The game ends when at least one row on any board is completed. Final scores include bonuses for patterns and unused tiles.",
+        "challenge": {
+          "name": "Tile Masterpiece",
+          "text": "Complete a perfect row and column in the same round.",
+          "difficulty": 3
+        }
+      },
+      {
+        "id": 6,
+        "name": "Wingspan",
+        "genre": ["Strategy", "Family"],
+        "difficulty": "Medium",
+        "players": "1-5",
+        "age": "10+",
+        "playTime": "40-70 minutes",
+        "description": "Wingspan is a bird-themed game where players act as bird enthusiasts trying to attract a variety of birds to their wildlife reserves. The game features stunning illustrations and over 170 unique bird cards, each with realistic habitats and abilities. Players earn points by laying eggs, gathering food, and completing objectives.",
+        "image": "assets/images/Wingspan.png",
+        "rules": "1. Setup: Players receive a player mat and starting bird cards. Food and eggs are distributed as per setup instructions.\n2. Gameplay: Each turn, players can play a bird card, gather food, lay eggs, or draw new bird cards. Birds offer unique powers that can benefit the player.\n3. Scoring: Points are awarded for birds, eggs, food caches, and meeting bonus objectives.\n4. Endgame: After four rounds, final scores are calculated, and the player with the most points wins.",
+        "challenge": {
+          "name": "Avian Collector",
+          "text": "Attract at least 10 different bird species in a single game.",
+          "difficulty": 4
+        }
+      },
+      {
+        "id": 7,
+        "name": "Sheriff of Nottingham",
+        "genre": ["Party", "Bluffing"],
+        "difficulty": "Easy",
+        "players": "3-5",
+        "age": "13+",
+        "playTime": "60 minutes",
+        "description": "Sheriff of Nottingham is a bluffing game where players take turns as the Sheriff, inspecting merchants’ bags for contraband. Merchants try to sneak goods past the Sheriff by bluffing or bribing. The game is filled with tense moments, humor, and cunning strategies.",
+        "image": "assets/images/Sheriff of Nottingham.png",
+        "rules": "1. Setup: Each player is dealt goods cards and coins. One player starts as the Sheriff.\n2. Gameplay: Merchants declare the contents of their bags. The Sheriff decides whether to inspect or allow the bag through. Contraband is confiscated, and penalties are paid.\n3. Scoring: Points are scored for legal goods, contraband, and bonuses for being the top seller of specific goods.\n4. Endgame: After all players have been Sheriff twice, the player with the most points wins.",
+        "challenge": {
+          "name": "Master of Deception",
+          "text": "Successfully sneak three contraband items past the Sheriff in one game.",
+          "difficulty": 3
+        }
+      },
+      {
+        "id": 8,
+        "name": "Isle of Skye",
+        "genre": ["Strategy", "Economic"],
+        "difficulty": "Medium",
+        "players": "2-5",
+        "age": "8+",
+        "playTime": "60 minutes",
+        "description": "Isle of Skye is a tile-placement game where players compete to build the most prosperous kingdom. Players buy and sell tiles to expand their territories, balancing the need for income with the cost of tiles. Dynamic scoring conditions keep gameplay fresh and strategic.",
+        "image": "assets/images/Isle of Skye.png",
+        "rules": "1. Setup: Players receive starting tiles, coins, and a scoring marker. Scoring tiles are placed on the board.\n2. Gameplay: Each round, players secretly price tiles, buy tiles from opponents, and place them to expand their kingdom.\n3. Scoring: Points are awarded based on scoring conditions that vary each game. Players must adapt their strategies to the evolving objectives.\n4. Endgame: After five rounds, final scores are tallied, including bonuses for completed objectives and territories.",
+        "challenge": {
+          "name": "Kingdom Builder",
+          "text": "Create a territory with at least 10 connected tiles.",
+          "difficulty": 4
+        }
+      },{
+        "id": 9,
+        "name": "Stone Age",
+        "genre": ["Strategy", "Economic", "Family"],
+        "difficulty": "Medium",
+        "players": "2-4",
+        "age": "10+",
+        "playTime": "60-90 minutes",
+        "description": "Stone Age is a worker-placement game where players lead a tribe to gather resources, develop tools, farm, and build huts. By strategically placing their tribe members, players expand their civilizations and compete for points. Balancing resource acquisition and development is crucial to success in this prehistoric adventure.",
+        "image": "assets/images/Stone Age.png",
+        "rules": "1. Setup: Each player starts with a tribe, a player board, and some resources. Place building tiles and cards on the main board.\n2. Gameplay: Players take turns assigning tribe members to gather resources, build structures, or improve their tools. Dice rolls determine the success of resource collection.\n3. Scoring: Points are earned through buildings, cards, and resource management. Players also score for their civilization’s development.\n4. Endgame: The game ends when a certain number of building tiles are depleted. The player with the most points wins.",
+        "challenge": {
+          "name": "Master Builder",
+          "text": "Construct three buildings in a single round.",
+          "difficulty": 3
+        }
+      },
+      {
+        "id": 10,
+        "name": "Clank!",
+        "genre": ["Adventure", "Deck-Building"],
+        "difficulty": "Medium",
+        "players": "2-4",
+        "age": "12+",
+        "playTime": "30-60 minutes",
+        "description": "Clank! is a deck-building adventure game where players sneak into a dragon’s lair to collect valuable artifacts. Players must balance building their deck, exploring the dungeon, and avoiding generating too much noise (Clank!) that could alert the dragon. The player with the most valuable loot escapes victorious.",
+        "image": "assets/images/Clank!.png",
+        "rules": "1. Setup: Players start with a basic deck of cards. Artifacts and treasures are placed in the dungeon.\n2. Gameplay: Players use their deck to move, fight, and acquire treasures. Cards played may generate Clank! tokens, increasing the dragon’s attention.\n3. Scoring: Points are scored from artifacts, treasures, and gold collected during the adventure.\n4. Endgame: The game ends when all players escape or are knocked out. The player with the highest score wins.",
+        "challenge": {
+          "name": "Stealth Master",
+          "text": "Escape the dungeon without generating any Clank! tokens.",
+          "difficulty": 4
+        }
+      },
+      {
+        "id": 11,
+        "name": "Castles of Burgundy",
+        "genre": ["Strategy", "Economic"],
+        "difficulty": "Medium",
+        "players": "2-4",
+        "age": "12+",
+        "playTime": "30-90 minutes",
+        "description": "Castles of Burgundy is a tile-placement game set in the medieval Loire Valley. Players expand their estates by acquiring and placing tiles, developing cities, trading goods, and building castles. Strategic planning and efficient use of resources are key to dominating the competition.",
+        "image": "assets/images/Castles of Burgundy.png",
+        "rules": "1. Setup: Each player starts with an estate board and initial tiles. Goods and tiles are placed on the main board.\n2. Gameplay: Players take turns rolling dice to collect tiles, place them on their board, or trade goods. Dice rolls determine the available actions each turn.\n3. Scoring: Points are scored for placing tiles, completing areas on the estate board, and trading goods.\n4. Endgame: The game ends after five rounds. Final points are tallied, and the player with the highest score wins.",
+        "challenge": {
+          "name": "Estate Tycoon",
+          "text": "Complete three estate areas of different colors in one game.",
+          "difficulty": 4
+        }
+      },
+      {
+        "id": 12,
+        "name": "Arkham Horror",
+        "genre": ["Adventure", "Cooperative", "Horror"],
+        "difficulty": "Hard",
+        "players": "1-8",
+        "age": "14+",
+        "playTime": "120-240 minutes",
+        "description": "Arkham Horror is a cooperative game set in H.P. Lovecraft’s mythos. Players investigate the strange events in the town of Arkham, battling monsters and closing portals to other dimensions. The game challenges players with unpredictable encounters, requiring teamwork and resource management to survive.",
+        "image": "assets/images/Arkham Horror.png",
+        "rules": "1. Setup: Players choose investigators and prepare the game board with locations, portals, and monsters.\n2. Gameplay: Each turn, players move around the board, investigate locations, fight monsters, and try to close portals.\n3. Scoring: Success depends on teamwork to prevent the Great Old One from awakening. Players win by sealing enough portals or defeating the final boss.\n4. Endgame: The game ends when the Great Old One awakens or enough portals are sealed. Victory or defeat is shared by all players.",
+        "challenge": {
+          "name": "Seal the Rift",
+          "text": "Close three portals in a single game without losing an investigator.",
+          "difficulty": 5
+        }
+      },
+      {
+        "id": 13,
+        "name": "Eldritch Horror",
+        "genre": ["Adventure", "Cooperative", "Horror"],
+        "difficulty": "Hard",
+        "players": "1-8",
+        "age": "14+",
+        "playTime": "120-240 minutes",
+        "description": "Eldritch Horror is a cooperative game of global mystery and terror. Players are investigators working to stop an ancient evil from awakening. By traveling the world, solving mysteries, battling monsters, and gathering clues, players must work together to prevent the apocalypse.",
+        "image": "assets/images/Eldritch Horror.png",
+        "rules": "1. Setup: Players select investigators, prepare the Ancient One's mystery deck, and place encounters on the map.\n2. Gameplay: Players take turns traveling the world, gathering clues, and resolving encounters. Combat against monsters and completing objectives are key to success.\n3. Scoring: Victory is achieved by solving all mysteries before the Ancient One awakens. Defeat occurs if players run out of time or fail to manage the doom track.\n4. Endgame: The game ends with either the investigators’ success in solving mysteries or the world succumbing to chaos.",
+        "challenge": {
+          "name": "Worldwide Savior",
+          "text": "Solve all mysteries without any investigator being defeated.",
+          "difficulty": 6
+        }
+      }, {
+        "id": 14,
+        "name": "Mansions of Madness",
+        "genre": ["Adventure", "Cooperative", "Horror"],
+        "difficulty": "Hard",
+        "players": "1-5",
+        "age": "14+",
+        "playTime": "120-180 minutes",
+        "description": "Mansions of Madness is a cooperative horror game set in the eerie world of H.P. Lovecraft. Players take on the roles of investigators exploring haunted locations, solving puzzles, and battling supernatural horrors. The app-driven gameplay ensures a unique experience with branching storylines and surprises at every turn.",
+        "image": "assets/images/Mansions of Madness.png",
+        "rules": "1. Setup: Players select investigators and prepare the modular game board based on the chosen scenario. The app generates the story and challenges.\n2. Gameplay: Players explore the mansion, interact with objects, and resolve encounters. The app dictates events and monster behavior.\n3. Scoring: Players win by completing the scenario objectives before succumbing to madness or defeat.\n4. Endgame: The game ends when players achieve their goal or fail due to overwhelming terror or damage.",
+        "challenge": {
+          "name": "Horror Survivor",
+          "text": "Complete a scenario without losing any investigators to madness.",
+          "difficulty": 5
+        }
+      },
+      {
+        "id": 15,
+        "name": "Shadows Over Camelot",
+        "genre": ["Adventure", "Cooperative"],
+        "difficulty": "Medium",
+        "players": "3-7",
+        "age": "10+",
+        "playTime": "60-90 minutes",
+        "description": "Shadows Over Camelot is a semi-cooperative game where players are knights of the Round Table defending Camelot. They must work together to complete quests, defend against invaders, and keep the kingdom safe. A potential traitor among the knights adds a layer of suspicion and strategy.",
+        "image": "assets/images/Shadows Over Camelot.png",
+        "rules": "1. Setup: Players choose knights and place quests on the board. Loyalty cards are distributed, possibly assigning one player as a traitor.\n2. Gameplay: Players take turns completing actions to progress quests, defend Camelot, and prevent the kingdom’s downfall.\n3. Scoring: Success is achieved by completing enough quests and avoiding defeat from the traitor or invaders.\n4. Endgame: The game ends when Camelot falls or when the knights triumph by completing their objectives.",
+        "challenge": {
+          "name": "Loyal Defender",
+          "text": "Complete three quests without the traitor being revealed.",
+          "difficulty": 4
+        }
+      },
+      {
+        "id": 16,
+        "name": "Jaipur",
+        "genre": ["Card", "Economic"],
+        "difficulty": "Easy",
+        "players": "2",
+        "age": "10+",
+        "playTime": "30 minutes",
+        "description": "Jaipur is a fast-paced card game for two players, set in the bustling markets of India. Players compete to become the Maharaja’s personal trader by collecting and trading goods for profit. Strategic decisions and timely trades are key to victory.",
+        "image": "assets/images/Jaipur.png",
+        "rules": "1. Setup: Shuffle the deck and deal cards to players. Place goods tokens and camels in the market.\n2. Gameplay: Players take turns trading, selling, or collecting goods. Bonus points are earned for large trades.\n3. Scoring: The round ends when all goods tokens are claimed. The player with the highest score wins the round.\n4. Endgame: The game is played over three rounds. The first player to win two rounds is declared the winner.",
+        "challenge": {
+          "name": "Market Master",
+          "text": "Win a round with no remaining cards in your hand.",
+          "difficulty": 2
+        }
+      },
+      {
+        "id": 17,
+        "name": "Concordia",
+        "genre": ["Strategy", "Economic"],
+        "difficulty": "Medium",
+        "players": "2-5",
+        "age": "12+",
+        "playTime": "90-120 minutes",
+        "description": "Concordia is a strategic economic game where players expand their trade networks across the Roman Empire. By acquiring resources, building settlements, and expanding influence, players compete for points. Careful planning and resource management are crucial for success.",
+        "image": "assets/images/Concordia.png",
+        "rules": "1. Setup: Each player starts with a hand of cards, initial resources, and tokens for settlements. The map board is prepared based on the number of players.\n2. Gameplay: Players take turns playing cards to perform actions like moving colonists, producing resources, or trading.\n3. Scoring: Points are scored for settlements, resources, and the fulfillment of objectives on player cards.\n4. Endgame: The game ends when a certain number of cards are purchased. Final scores are tallied to determine the winner.",
+        "challenge": {
+          "name": "Empire Builder",
+          "text": "Establish settlements in five different regions.",
+          "difficulty": 4
+        }
+      },
+      {
+        "id": 18,
+        "name": "Root",
+        "genre": ["Adventure", "Strategy", "Asymmetric"],
+        "difficulty": "Hard",
+        "players": "2-4",
+        "age": "10+",
+        "playTime": "60-90 minutes",
+        "description": "Root is an asymmetric strategy game where players control competing factions vying for control of a woodland. Each faction has unique abilities and goals, from military conquest to guerrilla warfare. Strategic alliances and betrayals add depth to the game.",
+        "image": "assets/images/Root.png",
+        "rules": "1. Setup: Players choose factions and set up the board according to their roles. Each faction has its own objectives and mechanics.\n2. Gameplay: Players take turns performing actions specific to their faction, expanding influence, and challenging opponents.\n3. Scoring: Points are earned by completing objectives, controlling territories, and fulfilling faction goals.\n4. Endgame: The game ends when a player reaches the required points or completes their faction-specific victory condition.",
+        "challenge": {
+          "name": "Forest Conqueror",
+          "text": "Control three clearings simultaneously for two consecutive turns.",
+          "difficulty": 5
+        }
+      },
+      {
+        "id": 19,
+        "name": "The Mind",
+        "genre": ["Cooperative", "Card"],
+        "difficulty": "Easy",
+        "players": "2-4",
+        "age": "8+",
+        "playTime": "20 minutes",
+        "description": "The Mind is a cooperative card game where players must play numbered cards in ascending order without communication. The game tests players’ intuition and ability to read each other’s timing. Simple yet challenging, it’s an addictive team experience.",
+        "image": "assets/images/The Mind.png",
+        "rules": "1. Setup: Players receive a hand of cards for each level of the game, starting with one card each in level one.\n2. Gameplay: Players must silently play cards in ascending order. No communication is allowed.\n3. Scoring: Levels are completed when all cards are played correctly. Lives are lost for errors, and shurikens provide limited assistance.\n4. Endgame: The game ends when players complete all levels or lose all lives. Success depends on perfect synchronization.",
+        "challenge": {
+          "name": "Silent Strategist",
+          "text": "Complete three levels without using any shurikens.",
+          "difficulty": 3
+        }
+      }, {
+        "id": 20,
+        "name": "Exploding Kittens",
+        "genre": ["Card", "Party"],
+        "difficulty": "Easy",
+        "players": "2-5",
+        "age": "7+",
+        "playTime": "15 minutes",
+        "description": "Exploding Kittens is a lighthearted and strategic card game where players try to avoid drawing an Exploding Kitten card. Packed with hilarious art and quirky mechanics, the game is a fun mix of strategy, luck, and sabotage. Players can use various action cards to mitigate risks or wreak havoc on opponents.",
+        "image": "assets/images/Exploding Kittens.png",
+        "rules": "1. Setup: Shuffle the deck and deal each player a hand of cards. Add enough Exploding Kitten cards to make one less than the number of players.\n2. Gameplay: On their turn, players can play action cards or draw a card from the deck. Drawing an Exploding Kitten without a Defuse card eliminates the player.\n3. Scoring: The game continues until only one player remains.\n4. Endgame: The last player standing, having avoided or defused all Exploding Kittens, wins the game.",
+        "challenge": {
+          "name": "Kitten Whisperer",
+          "text": "Win a game without using a Defuse card.",
+          "difficulty": 3
+        }
+      },
+      {
+        "id": 21,
+        "name": "Monopoly Gamer Edition",
+        "genre": ["Economic", "Family"],
+        "difficulty": "Medium",
+        "players": "2-4",
+        "age": "8+",
+        "playTime": "60 minutes",
+        "description": "Monopoly Gamer Edition combines classic Monopoly gameplay with beloved Nintendo characters. Players collect coins, buy properties, and use special abilities of characters like Mario and Luigi. Boss battles add an exciting twist, making it a fun and competitive experience for families and fans.",
+        "image": "assets/images/Monopoly Gamer Edition.png",
+        "rules": "1. Setup: Choose a Nintendo character and distribute starting coins. Place Boss cards on the board and prepare the dice.\n2. Gameplay: Players roll the dice to move around the board, buy properties, collect coins, and engage in boss battles. Special abilities and power-ups add strategy and unpredictability.\n3. Scoring: Coins and properties contribute to a player’s total score. Boss battles provide extra points and bonuses.\n4. Endgame: The game ends after the final Boss battle. The player with the highest total score wins.",
+        "challenge": {
+          "name": "Coin Collector",
+          "text": "Finish the game with the most coins, even without owning the most properties.",
+          "difficulty": 4
+        }
+      }
+  ]
+  
