@@ -1,7 +1,8 @@
 import 'dart:convert';
 
+import 'package:dicey_quests/src/core/utils/log.dart';
 import 'package:flutter/services.dart';
-import 'package:pond_care/src/core/utils/log.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JsonLoader {
@@ -15,7 +16,7 @@ class JsonLoader {
     final jsonData = prefs.getString(key);
     if (jsonData != null) {
       final List<dynamic> decodedJson = jsonDecode(jsonData) as List<dynamic>;
-     
+
       return decodedJson
           .whereType<Map<String, dynamic>>()
           .map((json) => fromMap(json))
@@ -23,7 +24,7 @@ class JsonLoader {
     } else {
       final assetJson = await rootBundle.loadString(assetPath);
       prefs.setString(key, assetJson);
-    
+
       return (json.decode(assetJson) as List<dynamic>)
           .map((e) => fromMap(e as Map<String, dynamic>))
           .toList();
@@ -57,7 +58,6 @@ class JsonLoader {
     logger.d(item);
 
     logger.d(itemList);
-
 
     prefs.setString(key, json.encode(itemList.map(toMap).toList()));
   }

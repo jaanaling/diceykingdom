@@ -1,10 +1,9 @@
-
+import 'package:dicey_quests/src/feature/game/bloc/game_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:pond_care/src/feature/pond/bloc/pond_bloc.dart';
 
 import '../../../../routes/go_router_config.dart';
 
@@ -13,12 +12,8 @@ class AppRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => PondBloc()..add(LoadPond()),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => GameBloc(),
       child: CupertinoApp.router(
         theme: const CupertinoThemeData(
           brightness: Brightness.light,
