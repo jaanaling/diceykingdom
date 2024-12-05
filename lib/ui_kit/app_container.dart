@@ -19,8 +19,8 @@ class AppContainer extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InnerGlow(
-        width: width,
-        height: height,
+        width: width+20,
+        height: height+20,
         glowBlur: 4,
         glowRadius: borderRadius,
         strokeLinearGradient: LinearGradient(
@@ -44,8 +44,8 @@ class AppContainer extends StatelessWidget {
           child: InnerGlow(
             glowBlur: 4,
             thickness: 7,
-            width: width - 20,
-            height: height - 20,
+            width: width,
+            height: height,
             glowRadius: borderRadius - 2,
             strokeLinearGradient: LinearGradient(
               begin: Alignment.topCenter,
