@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inner_glow/inner_glow.dart';
 
 import '../../src/core/utils/app_icon.dart';
 import '../../src/core/utils/icon_provider.dart';
@@ -6,7 +7,8 @@ import '../../src/core/utils/icon_provider.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
+  final Function(int) onTap;
+  const BottomBar({super.key, required this.onTap});
 
   @override
   State<BottomBar> createState() => _BottomBarState();
@@ -55,16 +57,16 @@ class _BottomBarState extends State<BottomBar>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // Фиксированная высота для нижней панели
+    return InnerGlow(
+      width: MediaQuery.of(context).size.width - 30,
       height: 80,
-      decoration: BoxDecoration(
+      baseDecoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFFA701AA), Color(0xFF950098)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
             color: Colors.black26,
@@ -73,8 +75,10 @@ class _BottomBarState extends State<BottomBar>
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      glowRadius: 25,
+      strokeLinearGradient: LinearGradient( end: Alignment.bottomCenter, begin: Alignment.topCenter,
+          colors: [Color(0xFFF59FF8), Colors.black.withOpacity(0.25)]),
+      child: Center(
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           ...List.generate(icons.length, (index) {
             bool isSelected = _selectedIndex == index;
@@ -82,14 +86,12 @@ class _BottomBarState extends State<BottomBar>
               onTap: () {
                 setState(() {
                   _selectedIndex = index;
+                  widget.onTap(index);
                 });
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                // Плавное изменение размеров и цвета
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   // Добавляем свечение только для выбранного элемента
@@ -121,8 +123,8 @@ class _BottomBarState extends State<BottomBar>
                       },
                       child: AppIcon(
                         asset: icons[index],
-                        width: 33,
-                        height: 33,
+                        width: 28,
+                        height: 28,
                         color: isSelected
                             ? Colors.white
                             : Colors.white.withOpacity(0.7),
@@ -137,14 +139,12 @@ class _BottomBarState extends State<BottomBar>
               onTap: () {
                 setState(() {
                   _selectedIndex = 3;
+                  widget.onTap(3);
                 });
               },
               child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
-                  // Плавное изменение размеров и цвета
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     // Добавляем свечение только для выбранного элемента
@@ -172,15 +172,12 @@ class _BottomBarState extends State<BottomBar>
                           child: child,
                         );
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Icon(
-                          Icons.shuffle,
-                          size: 40,
-                          color: _selectedIndex == 3
-                              ? Colors.white
-                              : Colors.white.withOpacity(0.6),
-                        ),
+                      child: Icon(
+                        Icons.shuffle,
+                        size: 35,
+                        color: _selectedIndex == 3
+                            ? Colors.white
+                            : Colors.white.withOpacity(0.6),
                       ),
                     ),
                   ])))
