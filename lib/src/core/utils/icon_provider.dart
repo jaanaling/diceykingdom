@@ -1,13 +1,14 @@
 enum IconProvider {
   splash(imageName: 'splash.png'),
-  catalog(imageName: 'catalog.png'),
-  home(imageName: 'home.png'),
-  diary(imageName: 'diary.png'),
+  catalog(imageName: 'catalog.svg'),
+  home(imageName: 'home.svg'),
+  diary(imageName: 'diary.svg'),
   greenBall(imageName: 'green_ball.png'),
   redBall(imageName: 'red_ball.png'),
   yellowBall(imageName: 'yellow_ball.png'),
   greyBall(imageName: 'grey_ball.png'),
   logo(imageName: 'logo.png'),
+  background(imageName: 'background.png'),
   unknown(imageName: '');
 
   const IconProvider({

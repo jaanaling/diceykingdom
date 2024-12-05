@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AppIcon extends StatelessWidget {
   final String asset;
@@ -7,7 +9,6 @@ class AppIcon extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
-  final BlendMode blendMode;
 
   const AppIcon({
     super.key,
@@ -16,21 +17,39 @@ class AppIcon extends StatelessWidget {
     this.width,
     this.height,
     this.fit = BoxFit.contain,
-    this.blendMode = BlendMode.srcIn,
   });
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
 
-
-
-    return Image.asset(
-            asset,
-            width: width,
-            height: height,
-            fit: fit,
-            color: color,
-            colorBlendMode: blendMode,
-          );
+    return asset.contains('.svg')
+        ? Opacity(
+      opacity: 0.97,
+      child: SvgPicture.asset(
+        asset,
+        width: width,
+        height: height,
+        fit: fit,
+        allowDrawingOutsideViewBox: true,
+        colorFilter: color != null
+            ? ColorFilter.mode(
+          color!,
+          BlendMode.srcIn,
+        )
+            : null,
+      ),
+    )
+        : asset.contains("assets") ?Image.asset(
+      asset,
+      width: width,
+      height: height,
+      fit: fit,
+    ) : Image.file(
+      File(asset),
+      width: width,
+      height: height,
+      fit: fit,
+    );
   }
 }

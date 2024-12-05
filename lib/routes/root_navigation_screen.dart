@@ -1,3 +1,4 @@
+import 'package:dicey_quests/ui_kit/bottom_bar/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -28,18 +29,15 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    IconProvider.splash.buildImageUrl(),
+                    IconProvider.background.buildImageUrl(),
                   ),
                   fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.68),
-                    BlendMode.darken,
-                  ),
                 ),
               ),
             ),
           ),
           widget.navigationShell,
+          Positioned(bottom: 5+ MediaQuery.of(context).padding.bottom, left: 10, right: 10, child: BottomBar())
         ],
       ),
     );

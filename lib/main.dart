@@ -1,20 +1,25 @@
+import 'package:dicey_quests/src/core/dependency_injection.dart';
+import 'package:dicey_quests/src/feature/app/presentation/app_root.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupDependencyInjection();
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  // await Firebase.initializeApp();
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  // FirebaseMessaging messaging = FirebaseMessaging.instance;
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+
+
+  runApp(
+    const AppRoot(),
+  );
 }

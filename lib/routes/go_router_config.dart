@@ -30,7 +30,7 @@ GoRouter buildGoRouter = GoRouter(
       },
       branches: [
         StatefulShellBranch(
-          navigatorKey: _homeNavigatorKey,
+          navigatorKey: _catalogNavigatorKey,
           routes: <RouteBase>[
             GoRoute(
               parentNavigatorKey: _catalogNavigatorKey,
@@ -46,11 +46,21 @@ GoRouter buildGoRouter = GoRouter(
                 ),
               ],
             ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _homeNavigatorKey,
+          routes: <RouteBase>[
             GoRoute(
               parentNavigatorKey: _homeNavigatorKey,
               path: RouteValue.home.path,
               builder: (context, state) => PyramidScreen(key: UniqueKey()),
             ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _diaryNavigatorKey,
+          routes: <RouteBase>[
             GoRoute(
               parentNavigatorKey: _diaryNavigatorKey,
               path: RouteValue.diary.path,
