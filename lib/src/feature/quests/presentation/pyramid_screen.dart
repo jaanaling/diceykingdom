@@ -164,14 +164,19 @@ class PyramidScreen extends StatelessWidget {
         image = 'assets/images/aqua_ball.png';
         break;
     }
-    return CupertinoButton(
-      padding: EdgeInsets.zero,
-      onPressed: () => showChallengeDialog(context, game),
-      child: Image.asset(
-        image,
-        width: MediaQuery.of(context).size.width * 0.12,
-        height: MediaQuery.of(context).size.width * 0.12,
-        fit: BoxFit.cover,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => showChallengeDialog(context, game),
+        borderRadius: BorderRadius.circular(32),
+        child: Ink.image(
+          width: MediaQuery.of(context).size.width * 0.12,
+          height: MediaQuery.of(context).size.width * 0.12,
+          fit: BoxFit.cover,
+          image: AssetImage(
+            image,
+          ),
+        ),
       ),
     );
   }
