@@ -52,12 +52,8 @@ class JsonLoader {
   ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final List<T> itemList = await loadData();
-    logger.d(itemList);
 
-    itemList.remove(item);
-    logger.d(item);
-
-    logger.d(itemList);
+    itemList.removeWhere((element) => element == item);
 
     prefs.setString(key, json.encode(itemList.map(toMap).toList()));
   }
@@ -73,6 +69,17 @@ class JsonLoader {
     final List<T> itemList = await loadData();
 
     await modifyAction(itemList);
+
+    prefs.setString(key, json.encode(itemList.map(toMap).toList()));
+  }
+
+  // Добавляем метод saveAllData
+  static Future<void> saveAllData<T>(
+    String key,
+    List<T> itemList,
+    Map<String, dynamic> Function(T) toMap,
+  ) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setString(key, json.encode(itemList.map(toMap).toList()));
   }

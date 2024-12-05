@@ -44,4 +44,20 @@ class GameRepository {
       (item) => item.toMap(),
     );
   }
+
+  Future<Game?> getById(int id) async {
+    final games = await load();
+    return games.firstWhere(
+      (game) => game.id == id,
+    );
+  }
+
+  // Добавляем метод saveAll
+  Future<void> saveAll(List<Game> games) {
+    return JsonLoader.saveAllData<Game>(
+      key,
+      games,
+      (item) => item.toMap(),
+    );
+  }
 }

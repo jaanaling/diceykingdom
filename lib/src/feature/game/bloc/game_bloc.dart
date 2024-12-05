@@ -34,6 +34,14 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       final games = await _repository.load();
       final characterProfiles = await _repositoryProfile.load();
 
+      // Разблокируем первый уровень при первой загрузке
+      bool updated = unlockFirstLevel(games);
+
+      // Если игры были обновлены, сохраняем изменения
+      if (updated) {
+        await _repository.saveAll(games);
+      }
+
       emit(
         GameLoaded(
           games,
@@ -45,7 +53,6 @@ class GameBloc extends Bloc<GameEvent, GameState> {
                     ? el.challenge.difficulty
                     : 0),
           ),
-          
           characterProfiles,
         ),
       );
@@ -55,16 +62,95 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     }
   }
 
+  bool unlockFirstLevel(List<Game> games) {
+    bool updated = false;
+    for (int i = 0; i < games.length; i++) {
+      if (games[i].challenge.difficulty == 1 &&
+          games[i].challenge.status == ChallengeStatus.lock) {
+        games[i] = games[i].copyWith(
+          challenge:
+              games[i].challenge.copyWith(status: ChallengeStatus.unlock),
+        );
+        updated = true;
+      }
+    }
+    return updated;
+  }
+
   Future<void> _onUpdateGame(
     UpdateGame event,
     Emitter<GameState> emit,
   ) async {
     try {
+      // Получаем предыдущую версию игры по ID
+      final oldGame = await _repository.getById(event.game.id);
+
+      // Обновляем игру в репозитории
       await _repository.update(event.game);
+
+      // Проверяем, изменился ли статус челленджа
+      if (oldGame?.challenge.status != event.game.challenge.status) {
+        // Загружаем все игры
+        final games = await _repository.load();
+
+        // Проверяем и разблокируем уровни
+        bool updated = checkAndUnlockLevels(games);
+
+        // Сохраняем изменения, если они есть
+        if (updated) {
+          await _repository.saveAll(games);
+        }
+      }
+
+      // Перезагружаем состояние
       add(LoadGame());
     } catch (e) {
       emit(const GameError('Failed to update game'));
     }
+  }
+
+  bool checkAndUnlockLevels(List<Game> games) {
+    bool updated = false;
+    // Находим максимальный уровень сложности
+    int maxDifficulty = games
+        .map((g) => g.challenge.difficulty)
+        .reduce((a, b) => a > b ? a : b);
+
+    for (int currentDifficulty = 1;
+        currentDifficulty < maxDifficulty;
+        currentDifficulty++) {
+      // Фильтруем игры текущей сложности
+      List<Game> currentGames = games
+          .where((g) => g.challenge.difficulty == currentDifficulty)
+          .toList();
+
+      // Общее количество челленджей на текущем уровне сложности
+      int totalChallenges = currentGames.length;
+
+      // Количество завершенных челленджей
+      int completedChallenges = currentGames
+          .where((g) => g.challenge.status == ChallengeStatus.finish)
+          .length;
+
+      // Проверяем, завершена ли половина челленджей
+      if (completedChallenges >= (totalChallenges / 2).ceil()) {
+        int nextDifficulty = currentDifficulty + 1;
+
+        // Разблокируем челленджи следующего уровня сложности
+        for (int i = 0; i < games.length; i++) {
+          if (games[i].challenge.difficulty == nextDifficulty &&
+              games[i].challenge.status == ChallengeStatus.lock) {
+            games[i] = games[i].copyWith(
+              challenge:
+                  games[i].challenge.copyWith(status: ChallengeStatus.unlock),
+            );
+            updated = true;
+          }
+        }
+      }
+    }
+
+    return updated;
   }
 
   Future<void> _onSaveGame(
