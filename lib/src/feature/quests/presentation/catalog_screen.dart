@@ -1,3 +1,4 @@
+import 'package:dicey_quests/ui_kit/app_card.dart';
 import 'package:dicey_quests/ui_kit/app_container.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -11,10 +12,9 @@ class CatalogScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Column(
           children: [
-            AppContainer(
+            CardBack(
               child: Text('example'),
-              width: 337,
-              height: 158,
+
             )
           ],
         ),

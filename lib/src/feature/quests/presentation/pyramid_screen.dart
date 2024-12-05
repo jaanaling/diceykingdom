@@ -6,6 +6,7 @@ import 'package:dicey_quests/src/feature/game/bloc/game_bloc.dart';
 import 'package:dicey_quests/src/feature/game/model/challenge.dart';
 import 'package:dicey_quests/src/feature/game/model/game.dart';
 import 'package:dicey_quests/ui_kit/app_button/app_button.dart';
+import 'package:dicey_quests/ui_kit/app_card.dart';
 import 'package:dicey_quests/ui_kit/app_container.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -199,13 +200,12 @@ class PyramidScreen extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: FlipCard(
             rotateSide: RotateSide.left,
+            animationDuration: Duration(milliseconds: 600),
             onTapFlipping:
                 true, //When enabled, the card will flip automatically when touched.
             axis: FlipAxis.vertical,
             controller: controller,
-            backWidget: AppContainer(
-              width: width * 0.833,
-              height: MediaQuery.of(context).size.height * 0.74,
+            backWidget: CardBack(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: SizedBox(
@@ -290,9 +290,7 @@ class PyramidScreen extends StatelessWidget {
                 ),
               ),
             ),
-            frontWidget: AppContainer(
-              width: width * 0.833,
-              height: MediaQuery.of(context).size.height * 0.74,
+            frontWidget: AppCard(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: Column(
