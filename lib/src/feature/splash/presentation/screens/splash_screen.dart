@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
   Future<void> startLoading(BuildContext context) async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
-    final adId = await AdvertisingId.id(true);
+    // final adId = await AdvertisingId.id(true);
     context.go(RouteValue.home.path);
   }
 
@@ -50,9 +50,10 @@ class _SplashScreenState extends State<SplashScreen>
             fit: BoxFit.cover,
           ),
         ),
-        Positioned(
-          top: height * 0.122,
-          child: AppIcon(asset: IconProvider.logo.buildImageUrl()),
+        AppIcon(
+          asset: IconProvider.logo.buildImageUrl(),
+          width: 328,
+          height: 260,
         ),
         Positioned(
           bottom: height * 0.122,

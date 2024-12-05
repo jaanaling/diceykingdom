@@ -5,20 +5,14 @@ enum RouteValue {
   home(
     path: '/home',
   ),
-  addPond(
-    path: 'addPond',
+  catalog(
+    path: '/catalog',
   ),
-  details(
-    path: 'details',
+  diary(
+    path: '/diary',
   ),
-  tasks(
-    path: 'tasks',
-  ),
-  history(
-    path: 'history',
-  ),
-  choose(
-    path: 'choose',
+  info(
+    path: 'info',
   ),
   unknown(
     path: '',

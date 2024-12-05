@@ -1,4 +1,4 @@
-package com.example.dicey_quests
+package com.example.dicey_questss
 
 import io.flutter.embedding.android.FlutterActivity
 

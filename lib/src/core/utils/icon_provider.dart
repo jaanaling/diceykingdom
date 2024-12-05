@@ -1,19 +1,13 @@
 enum IconProvider {
-  alert(imageName: 'alert.png'),
-  error(imageName: 'error.png'),
-  fish(imageName: 'fish.png'),
-  logo(imageName: 'logo.png'),
   splash(imageName: 'splash.png'),
-  decor(imageName: 'decor.png'),
-  appBar(imageName: 'appbar.png'),
-  noPhoto(imageName: "no_photo.png"),
-  back(imageName: 'back.png'),
-  photo(imageName: 'photo.png'),
-  add(imageName: 'add.png'),
-  masqot1(imageName: 'masqot1.webp'),
-  masqot2(imageName: 'masqot2.webp'),
-  masqot3(imageName: 'masqot3.webp'),
-  masqot4(imageName: 'masqot4.webp'),
+  catalog(imageName: 'catalog.png'),
+  home(imageName: 'home.png'),
+  diary(imageName: 'diary.png'),
+  greenBall(imageName: 'green_ball.png'),
+  redBall(imageName: 'red_ball.png'),
+  yellowBall(imageName: 'yellow_ball.png'),
+  greyBall(imageName: 'grey_ball.png'),
+  logo(imageName: 'logo.png'),
   unknown(imageName: '');
 
   const IconProvider({
