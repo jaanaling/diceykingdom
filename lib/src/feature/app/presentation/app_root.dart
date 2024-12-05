@@ -11,7 +11,7 @@ class AppRoot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => GameBloc(),
+        create: (context) => GameBloc()..add(LoadGame()),
         child: CupertinoApp.router(
           theme: const CupertinoThemeData(
             brightness: Brightness.light,

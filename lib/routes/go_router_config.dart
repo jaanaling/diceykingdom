@@ -1,6 +1,9 @@
 import 'package:dicey_quests/src/feature/quests/presentation/catalog_screen.dart';
+import 'package:dicey_quests/src/feature/quests/presentation/generator_screen.dart';
 import 'package:dicey_quests/src/feature/quests/presentation/info_screen.dart';
 import 'package:dicey_quests/src/feature/quests/presentation/pyramid_screen.dart';
+import 'package:dicey_quests/src/feature/quests/presentation/tamples_screen.dart';
+import 'package:dicey_quests/src/feature/quests/presentation/write_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +17,8 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _homeNavigatorKey = GlobalKey<NavigatorState>();
 final _catalogNavigatorKey = GlobalKey<NavigatorState>();
 final _diaryNavigatorKey = GlobalKey<NavigatorState>();
+final _generatorNavigatorKey = GlobalKey<NavigatorState>();
+
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 GoRouter buildGoRouter = GoRouter(
@@ -65,6 +70,34 @@ GoRouter buildGoRouter = GoRouter(
               parentNavigatorKey: _diaryNavigatorKey,
               path: RouteValue.diary.path,
               builder: (context, state) => DiaryScreen(key: UniqueKey()),
+              routes: <RouteBase>[
+                GoRoute(
+                  parentNavigatorKey: _diaryNavigatorKey,
+                  path: RouteValue.write.path,
+                  builder: (context, state) {
+                    return const WriteScreen();
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _generatorNavigatorKey,
+          routes: <RouteBase>[
+            GoRoute(
+              parentNavigatorKey: _generatorNavigatorKey,
+              path: RouteValue.generator.path,
+              builder: (context, state) => GeneratorScreen(key: UniqueKey()),
+              routes: <RouteBase>[
+                GoRoute(
+                  parentNavigatorKey: _generatorNavigatorKey,
+                  path: RouteValue.tamples.path,
+                  builder: (context, state) {
+                    return const TamplesScreen();
+                  },
+                ),
+              ],
             ),
           ],
         ),

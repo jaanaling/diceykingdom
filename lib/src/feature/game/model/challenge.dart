@@ -44,7 +44,9 @@ class Challenge {
       name: map['name'] as String,
       text: map['text'] as String,
       difficulty: map['difficulty'] as int,
-      status: ChallengeStatus.values[map['status'] as int],
+      status: map['status'] == null
+          ? ChallengeStatus.lock
+          : ChallengeStatus.values[map['status'] as int] ,
     );
   }
 
@@ -55,7 +57,7 @@ class Challenge {
 
   @override
   String toString() =>
-      'Challenge(name: $name, text: $text, difficulty: $difficulty)';
+      'Challenge(name: $name, text: $text, difficulty: $difficulty, status: $status)';
 
   @override
   bool operator ==(covariant Challenge other) {

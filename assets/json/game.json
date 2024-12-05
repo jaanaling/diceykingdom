@@ -63,7 +63,7 @@
         "challenge": {
           "name": "Architect of Wonders",
           "text": "Complete your Wonder while scoring the highest in culture.",
-          "difficulty": 4
+          "difficulty": 2
         }
       },
       {
@@ -97,7 +97,7 @@
         "challenge": {
           "name": "Avian Collector",
           "text": "Attract at least 10 different bird species in a single game.",
-          "difficulty": 4
+          "difficulty": 1
         }
       },
       {
@@ -131,7 +131,7 @@
         "challenge": {
           "name": "Kingdom Builder",
           "text": "Create a territory with at least 10 connected tiles.",
-          "difficulty": 4
+          "difficulty": 1
         }
       },{
         "id": 9,
@@ -164,7 +164,7 @@
         "challenge": {
           "name": "Stealth Master",
           "text": "Escape the dungeon without generating any Clank! tokens.",
-          "difficulty": 4
+          "difficulty": 1
         }
       },
       {
@@ -198,7 +198,7 @@
         "challenge": {
           "name": "Seal the Rift",
           "text": "Close three portals in a single game without losing an investigator.",
-          "difficulty": 5
+          "difficulty": 4
         }
       },
       {
@@ -231,7 +231,7 @@
         "challenge": {
           "name": "Horror Survivor",
           "text": "Complete a scenario without losing any investigators to madness.",
-          "difficulty": 5
+          "difficulty": 4
         }
       },
       {
@@ -248,7 +248,7 @@
         "challenge": {
           "name": "Loyal Defender",
           "text": "Complete three quests without the traitor being revealed.",
-          "difficulty": 4
+          "difficulty": 1
         }
       },
       {
@@ -282,7 +282,7 @@
         "challenge": {
           "name": "Empire Builder",
           "text": "Establish settlements in five different regions.",
-          "difficulty": 4
+          "difficulty": 1
         }
       },
       {
@@ -316,7 +316,7 @@
         "challenge": {
           "name": "Silent Strategist",
           "text": "Complete three levels without using any shurikens.",
-          "difficulty": 3
+          "difficulty": 2
         }
       }, {
         "id": 20,
@@ -332,7 +332,7 @@
         "challenge": {
           "name": "Kitten Whisperer",
           "text": "Win a game without using a Defuse card.",
-          "difficulty": 3
+          "difficulty": 1
         }
       },
       {
@@ -349,7 +349,7 @@
         "challenge": {
           "name": "Coin Collector",
           "text": "Finish the game with the most coins, even without owning the most properties.",
-          "difficulty": 4
+          "difficulty": 2
         }
       }
   ]

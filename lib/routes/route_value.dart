@@ -14,6 +14,16 @@ enum RouteValue {
   info(
     path: 'info',
   ),
+  write(
+    path: 'write',
+  ),
+  generator(
+    path: '/generator',
+  ),
+  tamples(
+    path: 'tamples',
+  ),
+
   unknown(
     path: '',
   );

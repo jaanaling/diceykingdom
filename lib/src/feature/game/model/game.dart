@@ -16,7 +16,7 @@ class Game {
   final String description;
   final String image;
   final String rules;
-  final Challenge challenge;
+   Challenge challenge;
 
   Game({
     required this.id,
@@ -80,7 +80,7 @@ class Game {
     return Game(
       id: map['id'] as int,
       name: map['name'] as String,
-      genre: List<String>.from(map['genre'] as List<String>),
+      genre: List<String>.from(map['genre'] as List<dynamic>),
       difficulty: map['difficulty'] as String,
       players: map['players'] as String,
       age: map['age'] as String,
