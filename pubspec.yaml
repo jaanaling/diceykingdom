@@ -27,7 +27,7 @@ dependencies:
   printing: ^5.13.4
   pdf: ^3.11.1
   uuid: ^4.5.1
-  pretty_animated_buttons: ^0.0.2
+  step_progress_indicator: ^1.0.2
   flutter_svg: ^2.0.10+1
   flutter_flip_card: ^0.0.6
 

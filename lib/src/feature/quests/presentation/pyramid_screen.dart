@@ -17,6 +17,7 @@ import 'package:flutter_flip_card/flipcard/flip_card.dart';
 import 'package:flutter_flip_card/modal/flip_side.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class PyramidScreen extends StatelessWidget {
   final controller = FlipCardController();
@@ -44,7 +45,7 @@ class PyramidScreen extends StatelessWidget {
               .toDouble();
 
           double progress =
-              totalChallenges > 0 ? completedChallenges / totalChallenges : 0.0;
+          (totalChallenges > 0 ? completedChallenges / totalChallenges : 0.0)*100;
 
           logger.d(progress);
           logger.d(totalChallenges);
@@ -109,14 +110,58 @@ class PyramidScreen extends StatelessWidget {
                   ),
                 ),
                 Spacer(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: LinearProgressIndicator(
-                    value: progress,
-                    backgroundColor: Colors.grey[300],
-                    color: Colors.blue,
-                    minHeight: 8,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: DecoratedBox(
+                        decoration: ShapeDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(0.00, -1.00),
+                            end: Alignment(0, 1),
+                            colors: [Color(0xFFC432E1), Color(0xFF9C13B7), Color(0xFF9B29B2)],
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(59),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                          child: StepProgressIndicator(
+                            totalSteps: totalChallenges.ceil(),
+                            currentStep: completedChallenges.ceil(),
+                            fallbackLength: MediaQuery.of(context).size.width * 0.625,
+                            size: 14,
+                            padding: 0,
+                            roundedEdges: Radius.circular(17),
+                            selectedGradientColor: LinearGradient(
+                              begin: Alignment(0.00, -1.00),
+                              end: Alignment(0, 1),
+                              colors: [
+                                Color(0xFF5AAC3C),
+                                Color(0xFF30C339),
+                                Color(0xFF157727)
+                              ],
+                            ),
+                            unselectedColor: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Gap(10),
+                    Text(
+                      '${progress.toStringAsFixed(0)}%',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontFamily: 'Jellee',
+                        fontWeight: FontWeight.w700,
+                        height: 0,
+                      ),
+                    )
+                  ],
                 ),
                 Spacer(),
                 Text(
@@ -249,7 +294,8 @@ class PyramidScreen extends StatelessWidget {
                             Gap(8),
                             Row(
                               children: [
-                                Image.asset(game.image, width: 127, height: 127),
+                                Image.asset(game.image,
+                                    width: 127, height: 127),
                                 Gap(16),
                                 Expanded(
                                   child: Text(
@@ -265,7 +311,6 @@ class PyramidScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                                   
                             Text(
                               secondPart,
                               style: TextStyle(
@@ -418,7 +463,7 @@ class PyramidScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {},
-                          color: ButtonColors.lightBlue,
+                          color: ButtonColors.pink,
                         ),
                       ),
                   ],
