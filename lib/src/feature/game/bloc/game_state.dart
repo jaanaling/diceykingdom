@@ -11,10 +11,12 @@ final class GameInitial extends GameState {}
 
 class GameLoaded extends GameState {
   final List<Game> game;
+  final List<User> user;
   final List<CharacterProfile> characterProfiles;
   final int score;
 
   const GameLoaded(
+    this.user,
     this.game,
     this.score,
     this.characterProfiles,

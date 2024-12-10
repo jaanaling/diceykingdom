@@ -62,6 +62,7 @@ class PathfinderCharacter extends CharacterProfile {
   @override
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'type': 'PathfinderCharacter',
       'id': id,
       'name': name,
       'race': race,

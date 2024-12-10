@@ -53,3 +53,31 @@ class RemoveProfile extends GameEvent {
   @override
   List<Object> get props => [profile];
 }
+
+
+class UpdateUser extends GameEvent {
+  final User user;
+
+  const UpdateUser(this.user);
+
+  @override
+  List<Object> get props => [user];
+}
+
+class SaveUser extends GameEvent {
+  final User user;
+
+  const SaveUser(this.user);
+
+  @override
+  List<Object> get props => [user];
+}
+
+class RemoveUser extends GameEvent {
+  final User user;
+
+  const RemoveUser(this.user);
+
+  @override
+  List<Object> get props => [user];
+}

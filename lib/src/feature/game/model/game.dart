@@ -16,7 +16,10 @@ class Game {
   final String description;
   final String image;
   final String rules;
-   Challenge challenge;
+  Challenge challenge;
+  bool isCollection;
+  bool isFavorite;
+
 
   Game({
     required this.id,
@@ -30,6 +33,8 @@ class Game {
     required this.image,
     required this.rules,
     required this.challenge,
+    required this.isCollection,
+    required this.isFavorite,
   });
 
   Game copyWith({
@@ -44,6 +49,8 @@ class Game {
     String? image,
     String? rules,
     Challenge? challenge,
+    bool? isCollection,
+    bool? isFavorite,
   }) {
     return Game(
       id: id ?? this.id,
@@ -57,6 +64,8 @@ class Game {
       image: image ?? this.image,
       rules: rules ?? this.rules,
       challenge: challenge ?? this.challenge,
+      isCollection: isCollection ?? this.isCollection,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 
@@ -73,6 +82,8 @@ class Game {
       'image': image,
       'rules': rules,
       'challenge': challenge.toMap(),
+      'isCollection': isCollection,
+      'isFavorite': isFavorite,
     };
   }
 
@@ -88,6 +99,12 @@ class Game {
       description: map['description'] as String,
       image: map['image'] as String,
       rules: map['rules'] as String,
+      isCollection: map['isCollection'] != null
+          ? map['isCollection'] as bool
+          : false,
+      isFavorite: map['isFavorite'] != null
+          ? map['isFavorite'] as bool 
+          : false,
       challenge: Challenge.fromMap(map['challenge'] as Map<String, dynamic>),
     );
   }
@@ -116,6 +133,8 @@ class Game {
         other.description == description &&
         other.image == image &&
         other.rules == rules &&
+        other.isCollection == isCollection &&
+        other.isFavorite == isFavorite &&
         other.challenge == challenge;
   }
 
@@ -130,6 +149,7 @@ class Game {
         playTime.hashCode ^
         description.hashCode ^
         image.hashCode ^
+        
         rules.hashCode ^
         challenge.hashCode;
   }

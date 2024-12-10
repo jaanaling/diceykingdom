@@ -5,6 +5,7 @@ import 'package:dicey_quests/src/core/utils/log.dart';
 import 'package:dicey_quests/src/feature/game/bloc/game_bloc.dart';
 import 'package:dicey_quests/src/feature/game/model/challenge.dart';
 import 'package:dicey_quests/src/feature/game/model/game.dart';
+import 'package:dicey_quests/src/feature/quests/presentation/show_card_dialog.dart';
 import 'package:dicey_quests/ui_kit/app_button/app_button.dart';
 import 'package:dicey_quests/ui_kit/app_card.dart';
 import 'package:dicey_quests/ui_kit/app_container.dart';
@@ -20,8 +21,6 @@ import 'package:go_router/go_router.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class PyramidScreen extends StatelessWidget {
-  final controller = FlipCardController();
-
   PyramidScreen({super.key});
 
   @override
@@ -212,7 +211,7 @@ class PyramidScreen extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () => showChallengeDialog(context, game),
+        onTap: () => showCardDialog(context, game),
         borderRadius: BorderRadius.circular(32),
         child: Ink.image(
           width: MediaQuery.of(context).size.width * 0.12,
@@ -223,256 +222,6 @@ class PyramidScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void showChallengeDialog(
-    BuildContext context,
-    Game game,
-  ) {
-    final width = MediaQuery.of(context).size.width;
-    final Challenge challenge = game.challenge;
-
-    final String description = game.description;
-    final List<String> descriptionParts = description.split(' ');
-    const int wrapIndex = 21;
-    final String firstPart = descriptionParts.take(wrapIndex).join(' ');
-    final String secondPart = descriptionParts.skip(wrapIndex).join(' ');
-
-    showAdaptiveDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          backgroundColor: Colors.transparent,
-          insetPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          child: FlipCard(
-            rotateSide: RotateSide.left,
-            animationDuration: Duration(milliseconds: 600),
-            onTapFlipping:
-                true, //When enabled, the card will flip automatically when touched.
-            axis: FlipAxis.vertical,
-            controller: controller,
-            backWidget: CardBack(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                child: SizedBox(
-                  height: 700,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () => Navigator.pop(context),
-                              icon: Icon(Icons.close),
-                            ),
-                            IconButton(
-                              onPressed: () => Navigator.pop(context),
-                              icon: Icon(Icons.close),
-                            ),
-                            IconButton(
-                              onPressed: () => Navigator.pop(context),
-                              icon: Icon(Icons.close),
-                            ),
-                          ],
-                        ),
-                        Gap(16),
-                        Column(
-                          children: [
-                            Text(
-                              game.name,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 26,
-                                fontFamily: 'Jellee',
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Gap(8),
-                            Row(
-                              children: [
-                                Image.asset(game.image,
-                                    width: 127, height: 127),
-                                Gap(16),
-                                Expanded(
-                                  child: Text(
-                                    firstPart,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                      fontFamily: 'Jellee',
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              secondPart,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 13,
-                                fontFamily: 'Jellee',
-                                fontWeight: FontWeight.w700,
-                              ),
-                              textAlign: TextAlign.justify,
-                            ),
-                            Gap(16),
-                            Text(
-                              game.rules,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Jellee',
-                                fontWeight: FontWeight.w700,
-                                height: 0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            frontWidget: AppCard(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: Icon(Icons.close),
-                      ),
-                    ),
-                    Spacer(),
-                    const Gap(16),
-                    Text(
-                      challenge.name,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 51,
-                        fontFamily: 'Jellee',
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const Gap(16),
-                    Text(
-                      challenge.text,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 21,
-                        fontFamily: 'Jellee',
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const Gap(16),
-                    CupertinoButton(
-                      padding: EdgeInsets.zero,
-                      child: Text(
-                        game.name,
-                        style: const TextStyle(
-                          color: Color(0xFFFFBB00),
-                          fontSize: 21,
-                          fontFamily: 'Jellee',
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      onPressed: () => controller.flipcard(),
-                    ),
-                    const Gap(36),
-                    Spacer(
-                      flex: 2,
-                    ),
-                    if (challenge.status != ChallengeStatus.lock)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          AppButton(
-                            widget: Text(
-                              challenge.status == ChallengeStatus.skip ||
-                                      challenge.status == ChallengeStatus.finish
-                                  ? 'Retry'
-                                  : 'Skip',
-                              style: const TextStyle(
-                                fontSize: 24,
-                              ),
-                            ),
-                            onPressed: () {
-                              if (challenge.status == ChallengeStatus.skip ||
-                                  challenge.status == ChallengeStatus.finish) {
-                                game.challenge = game.challenge
-                                    .copyWith(status: ChallengeStatus.start);
-                                context.read<GameBloc>().add(UpdateGame(game));
-                              } else {
-                                game.challenge = game.challenge
-                                    .copyWith(status: ChallengeStatus.skip);
-                                context.read<GameBloc>().add(UpdateGame(game));
-                              }
-                              Navigator.pop(context);
-                            },
-                            color: ButtonColors.red,
-                          ),
-                          if (challenge.status == ChallengeStatus.unlock ||
-                              challenge.status == ChallengeStatus.start)
-                            AppButton(
-                              widget: Text(
-                                challenge.status == ChallengeStatus.unlock
-                                    ? 'Start'
-                                    : 'Complite',
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                ),
-                              ),
-                              onPressed: () {
-                                if (challenge.status == ChallengeStatus.start) {
-                                  game.challenge = game.challenge
-                                      .copyWith(status: ChallengeStatus.finish);
-                                  context
-                                      .read<GameBloc>()
-                                      .add(UpdateGame(game));
-                                } else {
-                                  game.challenge = game.challenge
-                                      .copyWith(status: ChallengeStatus.start);
-                                  context
-                                      .read<GameBloc>()
-                                      .add(UpdateGame(game));
-                                }
-
-                                Navigator.pop(context);
-                              },
-                              color: ButtonColors.green,
-                            ),
-                        ],
-                      )
-                    else
-                      Center(
-                        child: AppButton(
-                          widget: Text(
-                            "You need to finish at least half of the last level",
-                            style: const TextStyle(
-                              fontSize: 24,
-                            ),
-                          ),
-                          onPressed: () {},
-                          color: ButtonColors.pink,
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }

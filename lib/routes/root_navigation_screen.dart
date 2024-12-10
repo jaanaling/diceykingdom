@@ -20,7 +20,6 @@ class RootNavigationScreen extends StatefulWidget {
 class _RootNavigationScreenState extends State<RootNavigationScreen> {
   int _currentIndex = 0;
 
-
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -32,7 +31,9 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    IconProvider.background.buildImageUrl(),
+                    widget.navigationShell.currentIndex != 2
+                        ? IconProvider.background.buildImageUrl()
+                        : IconProvider.back2.buildImageUrl(),
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -40,7 +41,13 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
             ),
           ),
           widget.navigationShell,
-          Positioned(bottom: 5+ MediaQuery.of(context).padding.bottom, left: 10, right: 10, child: BottomBar(onTap: _onTap,))
+          Positioned(
+              bottom: 5 + MediaQuery.of(context).padding.bottom,
+              left: 10,
+              right: 10,
+              child: BottomBar(
+                onTap: _onTap,
+              ))
         ],
       ),
     );
@@ -71,6 +78,3 @@ class _RootNavigationScreenState extends State<RootNavigationScreen> {
     });
   }
 }
-
-
-

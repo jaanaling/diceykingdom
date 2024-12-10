@@ -27,6 +27,7 @@ class Mafias extends CharacterProfile {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'type': 'MafiaPlayer',
       'id': id,
       'players': players.map((x) => x.toMap()).toList(),
     };
@@ -35,13 +36,18 @@ class Mafias extends CharacterProfile {
   factory Mafias.fromMap(Map<String, dynamic> map) {
     return Mafias(
       id: map['id'] as String,
-      players: List<MafiaPlayer>.from((map['players'] as List<int>).map<MafiaPlayer>((x) => MafiaPlayer.fromMap(x as Map<String,dynamic>),),),
+      players: List<MafiaPlayer>.from(
+        (map['players'] as List<dynamic>).map<MafiaPlayer>(
+          (x) => MafiaPlayer.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Mafias.fromJson(String source) => Mafias.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Mafias.fromJson(String source) =>
+      Mafias.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'Mafias(id: $id, players: $players)';
@@ -49,24 +55,20 @@ class Mafias extends CharacterProfile {
   @override
   bool operator ==(covariant Mafias other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      listEquals(other.players, players);
+
+    return other.id == id && listEquals(other.players, players);
   }
 
   @override
   int get hashCode => id.hashCode ^ players.hashCode;
 }
 
-class MafiaPlayer  {
-
+class MafiaPlayer {
   String playerName;
   String role;
   String description;
 
   MafiaPlayer({
-
     required this.playerName,
     required this.role,
     required this.description,
@@ -79,7 +81,6 @@ class MafiaPlayer  {
     String? id,
   }) {
     return MafiaPlayer(
-
       playerName: playerName ?? this.playerName,
       role: role ?? this.role,
       description: description ?? this.description,
@@ -88,7 +89,6 @@ class MafiaPlayer  {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-    
       'playerName': playerName,
       'role': role,
       'description': description,
@@ -97,7 +97,6 @@ class MafiaPlayer  {
 
   factory MafiaPlayer.fromMap(Map<String, dynamic> map) {
     return MafiaPlayer(
-     
       playerName: map['playerName'] as String,
       role: map['role'] as String,
       description: map['description'] as String,

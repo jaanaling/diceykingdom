@@ -5,7 +5,7 @@ import 'package:dicey_quests/src/games/player.dart';
 
 class DnDCharacter extends CharacterProfile {
   @override
- String id;
+  String id;
   String name;
   String race;
   String characterClass;
@@ -65,6 +65,7 @@ class DnDCharacter extends CharacterProfile {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'type': 'DnDCharacter',
       'id': id,
       'name': name,
       'race': race,
@@ -93,13 +94,16 @@ class DnDCharacter extends CharacterProfile {
       wisdom: map['wisdom'] as int,
       charisma: map['charisma'] as int,
       weapon: map['weapon'] != null ? map['weapon'] as String : null,
-      classAbilities: map['classAbilities'] != null ? map['classAbilities'] as String : null,
+      classAbilities: map['classAbilities'] != null
+          ? map['classAbilities'] as String
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory DnDCharacter.fromJson(String source) => DnDCharacter.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory DnDCharacter.fromJson(String source) =>
+      DnDCharacter.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -109,33 +113,32 @@ class DnDCharacter extends CharacterProfile {
   @override
   bool operator ==(covariant DnDCharacter other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.name == name &&
-      other.race == race &&
-      other.characterClass == characterClass &&
-      other.strength == strength &&
-      other.dexterity == dexterity &&
-      other.constitution == constitution &&
-      other.intelligence == intelligence &&
-      other.wisdom == wisdom &&
-      other.charisma == charisma &&
-      other.weapon == weapon &&
-      other.classAbilities == classAbilities;
+
+    return other.name == name &&
+        other.race == race &&
+        other.characterClass == characterClass &&
+        other.strength == strength &&
+        other.dexterity == dexterity &&
+        other.constitution == constitution &&
+        other.intelligence == intelligence &&
+        other.wisdom == wisdom &&
+        other.charisma == charisma &&
+        other.weapon == weapon &&
+        other.classAbilities == classAbilities;
   }
 
   @override
   int get hashCode {
     return name.hashCode ^
-      race.hashCode ^
-      characterClass.hashCode ^
-      strength.hashCode ^
-      dexterity.hashCode ^
-      constitution.hashCode ^
-      intelligence.hashCode ^
-      wisdom.hashCode ^
-      charisma.hashCode ^
-      weapon.hashCode ^
-      classAbilities.hashCode;
+        race.hashCode ^
+        characterClass.hashCode ^
+        strength.hashCode ^
+        dexterity.hashCode ^
+        constitution.hashCode ^
+        intelligence.hashCode ^
+        wisdom.hashCode ^
+        charisma.hashCode ^
+        weapon.hashCode ^
+        classAbilities.hashCode;
   }
 }

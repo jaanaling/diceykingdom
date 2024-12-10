@@ -16,6 +16,7 @@ enum IconProvider {
   startegic(imageName: "startegic.png"),
   logo(imageName: 'logo.png'),
   background(imageName: 'background.png'),
+  back2(imageName: '2back.png'),
   unknown(imageName: '');
 
   const IconProvider({

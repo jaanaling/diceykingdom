@@ -1,8 +1,6 @@
 import 'package:dicey_quests/src/feature/quests/presentation/catalog_screen.dart';
 import 'package:dicey_quests/src/feature/quests/presentation/generator_screen.dart';
-import 'package:dicey_quests/src/feature/quests/presentation/info_screen.dart';
 import 'package:dicey_quests/src/feature/quests/presentation/pyramid_screen.dart';
-import 'package:dicey_quests/src/feature/quests/presentation/tamples_screen.dart';
 import 'package:dicey_quests/src/feature/quests/presentation/write_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,15 +39,6 @@ GoRouter buildGoRouter = GoRouter(
               parentNavigatorKey: _catalogNavigatorKey,
               path: RouteValue.catalog.path,
               builder: (context, state) => CatalogScreen(key: UniqueKey()),
-              routes: <RouteBase>[
-                GoRoute(
-                  parentNavigatorKey: _catalogNavigatorKey,
-                  path: RouteValue.info.path,
-                  builder: (context, state) {
-                    return const InfoScreen();
-                  },
-                ),
-              ],
             ),
           ],
         ),
@@ -89,15 +78,6 @@ GoRouter buildGoRouter = GoRouter(
               parentNavigatorKey: _generatorNavigatorKey,
               path: RouteValue.generator.path,
               builder: (context, state) => GeneratorScreen(key: UniqueKey()),
-              routes: <RouteBase>[
-                GoRoute(
-                  parentNavigatorKey: _generatorNavigatorKey,
-                  path: RouteValue.tamples.path,
-                  builder: (context, state) {
-                    return const TamplesScreen();
-                  },
-                ),
-              ],
             ),
           ],
         ),

@@ -23,7 +23,10 @@ class PathfinderGenerator {
   }
 
   static final List<Field> baseFields = [
-    Field(name: 'Name', type: FieldType.text),
+    Field(
+      name: 'Name',
+      type: FieldType.text,
+    ),
     Field(
       name: 'Race',
       type: FieldType.dropdown,

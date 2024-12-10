@@ -61,6 +61,7 @@ class BunkerPlayer extends CharacterProfile {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'type': 'BunkerPlayer',
       'id': id,
       'name': name,
       'age': age,

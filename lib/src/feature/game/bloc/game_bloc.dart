@@ -3,7 +3,9 @@ import 'package:dicey_quests/src/core/dependency_injection.dart';
 import 'package:dicey_quests/src/core/utils/log.dart';
 import 'package:dicey_quests/src/feature/game/model/challenge.dart';
 import 'package:dicey_quests/src/feature/game/model/game.dart';
+import 'package:dicey_quests/src/feature/game/model/user.dart';
 import 'package:dicey_quests/src/feature/game/repository/repository.dart';
+import 'package:dicey_quests/src/feature/game/repository/user_repository.dart';
 import 'package:dicey_quests/src/games/player.dart';
 import 'package:dicey_quests/src/games/repository.dart';
 import 'package:equatable/equatable.dart';
@@ -15,6 +17,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
   final GameRepository _repository = locator<GameRepository>();
   final CharacterProfileRepository _repositoryProfile =
       locator<CharacterProfileRepository>();
+  final UserRepository _repositoryUser = locator<UserRepository>();
 
   GameBloc() : super(GameInitial()) {
     on<LoadGame>(_onLoadGames);
@@ -23,6 +26,9 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     on<UpdateProfile>(_onUpdateProfile);
     on<SaveProfile>(_onSaveProfile);
     on<RemoveProfile>(_onRemoveProfile);
+    on<UpdateUser>(_onUpdateUser);
+    on<SaveUser>(_onSaveUser);
+    on<RemoveUser>(_onRemoveUser);
   }
 
   Future<void> _onLoadGames(
@@ -33,6 +39,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     try {
       final games = await _repository.load();
       final characterProfiles = await _repositoryProfile.load();
+      final users = await _repositoryUser.load();
 
       // Разблокируем первый уровень при первой загрузке
       bool updated = unlockFirstLevel(games);
@@ -44,6 +51,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
 
       emit(
         GameLoaded(
+          users,
           games,
           games.fold(
             0,
@@ -201,6 +209,46 @@ class GameBloc extends Bloc<GameEvent, GameState> {
   ) async {
     try {
       await _repositoryProfile.remove(event.profile);
+      add(LoadGame());
+    } catch (e) {
+      logger.e(e);
+      emit(const GameError('Failed to remove transaction'));
+    }
+  }
+
+  Future<void> _onUpdateUser(
+    UpdateUser event,
+    Emitter<GameState> emit,
+  ) async {
+    try {
+      await _repositoryUser.update(event.user);
+      add(LoadGame());
+    } catch (e) {
+      emit(const GameError('Failed to update game'));
+    }
+  }
+
+  Future<void> _onSaveUser(
+    SaveUser event,
+    Emitter<GameState> emit,
+  ) async {
+    try {
+      logger.d(event);
+      await _repositoryUser.save(event.user);
+
+      add(LoadGame());
+    } catch (e) {
+      logger.e(e);
+      emit(const GameError('Failed to save game'));
+    }
+  }
+
+  Future<void> _onRemoveUser(
+    RemoveUser event,
+    Emitter<GameState> emit,
+  ) async {
+    try {
+      await _repositoryUser.remove(event.user);
       add(LoadGame());
     } catch (e) {
       logger.e(e);
