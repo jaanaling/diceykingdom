@@ -564,6 +564,9 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
           onSaved: (value) {
             selections[field.name] = int.parse(value!);
           },
+          onChanged: (value) {
+            selections[field.name] = value;
+          },
           placeholder: field.name,
           onAdd: () {
             setState(() {

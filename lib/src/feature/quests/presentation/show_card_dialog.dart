@@ -1,4 +1,5 @@
 import 'dart:ui' as ui;
+import 'package:dicey_quests/routes/go_router_config.dart';
 import 'package:dicey_quests/src/feature/game/bloc/game_bloc.dart';
 import 'package:dicey_quests/src/feature/game/model/challenge.dart';
 import 'package:dicey_quests/src/feature/game/model/game.dart';
@@ -16,6 +17,7 @@ import 'package:flutter_flip_card/controllers/flip_card_controllers.dart';
 import 'package:flutter_flip_card/flipcard/flip_card.dart';
 import 'package:flutter_flip_card/modal/flip_side.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 Future<CharacterProfile?> showGeneratorDialog(
   BuildContext context,
@@ -112,155 +114,183 @@ Future<CharacterProfile?> showGeneratorDialog(
                 ),
               ),
               frontWidget: AppCard(
-                child: ListView.separated(
-                    itemCount: profiles.length,
-                    padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                    separatorBuilder: (_, __) => Gap(6),
-                    itemBuilder: (context, index) {
-                      final profile = profiles[index];
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: profiles.length == 0
+                          ? Center(child: Text("No saved profiles yet"))
+                          : ListView.separated(
+                              itemCount: profiles.length,
+                              padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
+                              separatorBuilder: (_, __) => Gap(6),
+                              itemBuilder: (context, index) {
+                                final profile = profiles[index];
 
-                      if (profile is BunkerPlayer) {
-                        final player = profile;
-                        return AppButton(
-                          color: ButtonColors.yellow,
-                          width: double.infinity,
-                          onPressed: () {
-                            choosedProfile = profile;
+                                if (profile is BunkerPlayer) {
+                                  final player = profile;
+                                  return AppButton(
+                                    color: ButtonColors.yellow,
+                                    width: double.infinity,
+                                    onPressed: () {
+                                      choosedProfile = profile;
 
-                            title = 'Bunker Player';
-                            content = 'Name: ${profile.name}\n'
-                                'Age: ${profile.age}\n'
-                                'Gender: ${profile.gender}\n'
-                                'Profession: ${profile.profession}\n'
-                                'Health Condition: ${profile.healthCondition}\n'
-                                'Skill: ${profile.skill}\n'
-                                'Item: ${profile.item}\n'
-                                'Phobia: ${profile.phobia}\n'
-                                'Hobby: ${profile.hobby}\n'
-                                'Unique Trait: ${profile.uniqueTrait}';
-                            setState(() {});
-                            controller.flipcard();
-                          },
-                          widget: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Bunker: " + player.name,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Jellee',
-                                  fontWeight: FontWeight.w700,
-                                )),
-                          ),
-                        );
-                      }
+                                      title = 'Bunker Player';
+                                      content = 'Name: ${profile.name}\n'
+                                          'Age: ${profile.age}\n'
+                                          'Gender: ${profile.gender}\n'
+                                          'Profession: ${profile.profession}\n'
+                                          'Health Condition: ${profile.healthCondition}\n'
+                                          'Skill: ${profile.skill}\n'
+                                          'Item: ${profile.item}\n'
+                                          'Phobia: ${profile.phobia}\n'
+                                          'Hobby: ${profile.hobby}\n'
+                                          'Unique Trait: ${profile.uniqueTrait}';
+                                      setState(() {});
+                                      controller.flipcard();
+                                    },
+                                    widget: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("Bunker: " + player.name,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontFamily: 'Jellee',
+                                            fontWeight: FontWeight.w700,
+                                          )),
+                                    ),
+                                  );
+                                }
 
-                      if (profile is Mafias) {
-                        final mafias = profile;
-                        return AppButton(
-                          color: ButtonColors.darkOrange,
-                          width: double.infinity,
-                          onPressed: () {
-                            choosedProfile = profile;
+                                if (profile is Mafias) {
+                                  final mafias = profile;
+                                  return AppButton(
+                                    color: ButtonColors.darkOrange,
+                                    width: double.infinity,
+                                    onPressed: () {
+                                      choosedProfile = profile;
 
-                            title = 'Mafia Players';
-                            final buffer = StringBuffer();
-                            for (int i = 0; i < profile.players.length; i++) {
-                              final player = profile.players[i];
-                              buffer.writeln(
-                                  'Player ${i + 1}: ${player.playerName} - ${player.role}\n${player.description}\n');
-                            }
-                            content = buffer.toString();
-                            setState(() {});
-                            controller.flipcard();
-                          },
-                          widget: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:
-                                Text('Mafias: ${mafias.players.length} players',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: 'Jellee',
-                                      fontWeight: FontWeight.w700,
-                                    )),
-                          ),
-                        );
-                      }
+                                      title = 'Mafia Players';
+                                      final buffer = StringBuffer();
+                                      for (int i = 0;
+                                          i < profile.players.length;
+                                          i++) {
+                                        final player = profile.players[i];
+                                        buffer.writeln(
+                                            'Player ${i + 1}: ${player.playerName} - ${player.role}\n${player.description}\n');
+                                      }
+                                      content = buffer.toString();
+                                      setState(() {});
+                                      controller.flipcard();
+                                    },
+                                    widget: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Mafias: ${mafias.players.length} players',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontFamily: 'Jellee',
+                                            fontWeight: FontWeight.w700,
+                                          )),
+                                    ),
+                                  );
+                                }
 
-                      if (profile is DnDCharacter) {
-                        final character = profile;
-                        return AppButton(
-                          color: ButtonColors.red,
-                          width: double.infinity,
-                          onPressed: () {
-                            choosedProfile = profile;
+                                if (profile is DnDCharacter) {
+                                  final character = profile;
+                                  return AppButton(
+                                    color: ButtonColors.red,
+                                    width: double.infinity,
+                                    onPressed: () {
+                                      choosedProfile = profile;
 
-                            title = 'DnD Character';
-                            content = 'Name: ${profile.name}\n'
-                                'Race: ${profile.race}\n'
-                                'Class: ${profile.characterClass}\n'
-                                'Strength: ${profile.strength}\n'
-                                'Dexterity: ${profile.dexterity}\n'
-                                'Constitution: ${profile.constitution}\n'
-                                'Intelligence: ${profile.intelligence}\n'
-                                'Wisdom: ${profile.wisdom}\n'
-                                'Charisma: ${profile.charisma}\n'
-                                'Weapon: ${profile.weapon ?? "None"}\n'
-                                'Class Abilities: ${profile.classAbilities ?? "None"}';
+                                      title = 'DnD Character';
+                                      content = 'Name: ${profile.name}\n'
+                                          'Race: ${profile.race}\n'
+                                          'Class: ${profile.characterClass}\n'
+                                          'Strength: ${profile.strength}\n'
+                                          'Dexterity: ${profile.dexterity}\n'
+                                          'Constitution: ${profile.constitution}\n'
+                                          'Intelligence: ${profile.intelligence}\n'
+                                          'Wisdom: ${profile.wisdom}\n'
+                                          'Charisma: ${profile.charisma}\n'
+                                          'Weapon: ${profile.weapon ?? "None"}\n'
+                                          'Class Abilities: ${profile.classAbilities ?? "None"}';
 
-                            setState(() {});
-                            controller.flipcard();
-                          },
-                          widget: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("DnD: " + character.name,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Jellee',
-                                  fontWeight: FontWeight.w700,
-                                )),
-                          ),
-                        );
-                      }
+                                      setState(() {});
+                                      controller.flipcard();
+                                    },
+                                    widget: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("DnD: " + character.name,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontFamily: 'Jellee',
+                                            fontWeight: FontWeight.w700,
+                                          )),
+                                    ),
+                                  );
+                                }
 
-                      if (profile is PathfinderCharacter) {
-                        final character = profile;
-                        return AppButton(
-                          color: ButtonColors.green,
-                          width: double.infinity,
-                          onPressed: () {
-                            choosedProfile = profile;
+                                if (profile is PathfinderCharacter) {
+                                  final character = profile;
+                                  return AppButton(
+                                    color: ButtonColors.green,
+                                    width: double.infinity,
+                                    onPressed: () {
+                                      choosedProfile = profile;
 
-                            title = 'Pathfinder Character';
-                            content = 'Name: ${profile.name}\n'
-                                'Race: ${profile.race}\n'
-                                'Class: ${profile.characterClass}\n'
-                                'Strength: ${profile.strength}\n'
-                                'Dexterity: ${profile.dexterity}\n'
-                                'Constitution: ${profile.constitution}\n'
-                                'Intelligence: ${profile.intelligence}\n'
-                                'Wisdom: ${profile.wisdom}\n'
-                                'Charisma: ${profile.charisma}\n'
-                                'Special Abilities: ${profile.specialAbilities ?? "None"}';
-                            setState(() {});
-                            controller.flipcard();
-                          },
-                          widget: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Pathfinder: " + character.name,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontFamily: 'Jellee',
-                                  fontWeight: FontWeight.w700,
-                                )),
-                          ),
-                        );
-                      }
+                                      title = 'Pathfinder Character';
+                                      content = 'Name: ${profile.name}\n'
+                                          'Race: ${profile.race}\n'
+                                          'Class: ${profile.characterClass}\n'
+                                          'Strength: ${profile.strength}\n'
+                                          'Dexterity: ${profile.dexterity}\n'
+                                          'Constitution: ${profile.constitution}\n'
+                                          'Intelligence: ${profile.intelligence}\n'
+                                          'Wisdom: ${profile.wisdom}\n'
+                                          'Charisma: ${profile.charisma}\n'
+                                          'Special Abilities: ${profile.specialAbilities ?? "None"}';
+                                      setState(() {});
+                                      controller.flipcard();
+                                    },
+                                    widget: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child:
+                                          Text("Pathfinder: " + character.name,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                                fontFamily: 'Jellee',
+                                                fontWeight: FontWeight.w700,
+                                              )),
+                                    ),
+                                  );
+                                }
 
-                      return const SizedBox();
-                    }),
+                                return const SizedBox();
+                              }),
+                    ),
+                    Spacer(),
+                    AppButton(
+                      width: double.infinity,
+                      color: ButtonColors.red,
+                      onPressed: () => context.pop(),
+                      widget: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Close',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: 'Jellee',
+                              fontWeight: FontWeight.w700,
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
