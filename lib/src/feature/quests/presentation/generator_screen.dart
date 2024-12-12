@@ -571,16 +571,20 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
           onAdd: () {
             setState(() {
               if (selections[field.name] != null) {
-                selections[field.name]++;
+
+                selections[field.name] =   selections[field.name]  +1;
+
               } else {
                 selections[field.name] = 1;
               }
+              controller.text =(selections[field.name] as int) .toString();
             });
           },
           onRemove: () {
             setState(() {
               if (selections[field.name] != null) {
-                selections[field.name]--;
+                selections[field.name] =  selections[field.name] -1;
+                controller.text =(selections[field.name] as int) .toString();
               }
             });
           },

@@ -19,18 +19,18 @@ class MafiaGenerator {
   ];
 
   static final Map<String, String> roleDescriptions = {
-    'Mafia': 'Работает в команде мафии, устраняя игроков ночью.',
-    'Detective': 'Может проверять роль одного игрока каждую ночь.',
-    'Civilian': 'Обычный житель города, без особых способностей.',
-    'Doctor': 'Может лечить одного игрока каждую ночь.',
-    'Bodyguard': 'Защищает выбранного игрока от нападений.',
-    'Spy': 'Может прослушивать разговоры мафии.',
-    'Maniac': 'Одинокий убийца, убивает игроков ночью.',
-    'Journalist': 'Собирает информацию и может раскрыть роль игрока публично.',
-    'Lawyer': 'Может защищать мафию на голосовании, изменяя мнение других.',
+    'Mafia': 'Works in the mafia team, eliminating players at night.',
+    'Detective': 'Can check the role of one player every night.',
+    'Civilian': 'A regular citizen of the city, with no special abilities.',
+    'Doctor': 'Can heal one player every night.',
+    'Bodyguard': 'Protects the selected player from attacks.',
+    'Spy': 'Can listen in on mafia conversations.',
+    'Maniac': 'A lone killer, kills players at night.',
+    'Journalist': 'Gathers information and can reveal the role of a player publicly.',
+    'Lawyer': 'Can protect the mafia in a vote, changing the opinions of others.',
     'Don':
-        'Глава мафии, может проверять роль одного игрока на принадлежность к мафии.',
-    'Sheriff': 'Может арестовывать игроков, блокируя их действия.'
+    'The head of the mafia, can check the role of one player for mafia affiliation.',
+    'Sheriff': 'Can arrest players, blocking their actions.'
   };
 
   static Mafias generateRoles(int playerCount) {

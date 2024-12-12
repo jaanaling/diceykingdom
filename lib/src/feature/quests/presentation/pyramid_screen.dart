@@ -51,13 +51,15 @@ class PyramidScreen extends StatelessWidget {
           logger.d(completedChallenges);
           logger.d(challenges);
 
+          final bool isIpad = MediaQuery.of(context).size.shortestSide >= 600;
+
           return SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.6,
+                  height:MediaQuery.of(context).size.height * 0.6,
                   child: ListView.separated(
                     reverse: true,
                     itemCount: challengesByLevel.length,
@@ -78,8 +80,8 @@ class PyramidScreen extends StatelessWidget {
 
                         // Ограничиваем высоту и ширину внутреннего скролла
                         SizedBox(
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          height:isIpad?MediaQuery.of(context).size.width * 0.1: MediaQuery.of(context).size.width * 0.15,
+                          width:  MediaQuery.of(context).size.width * 0.8,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: challengesByLevel[levelIndex]
@@ -190,6 +192,7 @@ class PyramidScreen extends StatelessWidget {
   }
 
   Widget buildBall(Challenge challenge, BuildContext context, Game game) {
+    final bool isIpad = MediaQuery.of(context).size.shortestSide >= 600;
     String image;
     switch (challenge.status) {
       case ChallengeStatus.lock:
@@ -214,8 +217,8 @@ class PyramidScreen extends StatelessWidget {
         onTap: () => showCardDialog(context, game),
         borderRadius: BorderRadius.circular(32),
         child: Ink.image(
-          width: MediaQuery.of(context).size.width * 0.12,
-          height: MediaQuery.of(context).size.width * 0.12,
+          width: isIpad? MediaQuery.of(context).size.width * 0.08: MediaQuery.of(context).size.width * 0.12,
+          height:isIpad? MediaQuery.of(context).size.width * 0.08:  MediaQuery.of(context).size.width * 0.12,
           fit: BoxFit.cover,
           image: AssetImage(
             image,

@@ -306,6 +306,7 @@ void showCardDialog(BuildContext context, Game game, [bool needFlip = false]) {
   showAdaptiveDialog(
     context: context,
     builder: (BuildContext context) {
+
       final Challenge challenge = game.challenge;
       final controller = FlipCardController();
 
@@ -332,134 +333,140 @@ void showCardDialog(BuildContext context, Game game, [bool needFlip = false]) {
               true, //When enabled, the card will flip automatically when touched.
           axis: FlipAxis.vertical,
           controller: controller,
-          backWidget: CardBack(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-              child: SizedBox(
-                height: 700,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Gap(16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          backWidget: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState){
+              return CardBack(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  child: SizedBox(
+                    height: 700,
+                    child: SingleChildScrollView(
+                      child: Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: AppButton(
-                              isRound: true,
-                              color: game.isFavorite
-                                  ? ButtonColors.pink
-                                  : ButtonColors.grey,
-                              widget: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 4),
-                                child: Icon(
-                                  CupertinoIcons.heart_fill,
-                                  color: Colors.white,
-                                  size: 24,
+                          Gap(16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: AppButton(
+                                  isRound: true,
+                                  color: game.isFavorite
+                                      ? ButtonColors.pink
+                                      : ButtonColors.grey,
+                                  widget: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 4),
+                                    child: Icon(
+                                      CupertinoIcons.heart_fill,
+                                      color: Colors.white,
+                                      size: 24,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    game.isFavorite = !game.isFavorite;
+
+                                    setState(()=>context.read<GameBloc>().add(UpdateGame(game)));
+                                  },
                                 ),
                               ),
-                              onPressed: () {
-                                game.isFavorite = !game.isFavorite;
-                                context.read<GameBloc>().add(UpdateGame(game));
-                              },
-                            ),
-                          ),
-                          AppButton(
-                            isRound: true,
-                            color: game.isCollection
-                                ? ButtonColors.yellow
-                                : ButtonColors.grey,
-                            widget: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 4),
-                              child: Icon(
-                                CupertinoIcons.collections_solid,
-                                color: Colors.white,
-                                size: 24,
-                              ),
-                            ),
-                            onPressed: () {
-                              game.isCollection = !game.isCollection;
-                              context.read<GameBloc>().add(UpdateGame(game));
-                            },
-                          ),
-                          AppButton(
-                            isRound: true,
-                            color: ButtonColors.red,
-                            widget: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 4),
-                              child: Icon(
-                                Icons.track_changes_sharp,
-                                color: Colors.white,
-                                size: 24,
-                              ),
-                            ),
-                            onPressed: () => controller.flipcard(),
-                          ),
-                        ],
-                      ),
-                      Gap(16),
-                      Column(
-                        children: [
-                          Text(
-                            game.name,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 26,
-                              fontFamily: 'Jellee',
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Gap(8),
-                          Row(
-                            children: [
-                              Image.asset(game.image, width: 127, height: 127),
-                              Gap(16),
-                              Expanded(
-                                child: Text(
-                                  firstPart,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
+                              AppButton(
+                                isRound: true,
+                                color: game.isCollection
+                                    ? ButtonColors.yellow
+                                    : ButtonColors.grey,
+                                widget: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  child: Icon(
+                                    CupertinoIcons.collections_solid,
                                     color: Colors.white,
-                                    fontSize: 13,
-                                    fontFamily: 'Jellee',
-                                    fontWeight: FontWeight.w700,
+                                    size: 24,
                                   ),
+                                ),
+                                onPressed: () {
+                                  game.isCollection = !game.isCollection;
+                                  setState(()=>context.read<GameBloc>().add(UpdateGame(game)));
+
+                                },
+                              ),
+                              AppButton(
+                                isRound: true,
+                                color: ButtonColors.red,
+                                widget: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  child: Icon(
+                                    Icons.track_changes_sharp,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
+                                ),
+                                onPressed: () => controller.flipcard(),
+                              ),
+                            ],
+                          ),
+                          Gap(16),
+                          Column(
+                            children: [
+                              Text(
+                                game.name,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 26,
+                                  fontFamily: 'Jellee',
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Gap(8),
+                              Row(
+                                children: [
+                                  Image.asset(game.image, width: 127, height: 127),
+                                  Gap(16),
+                                  Expanded(
+                                    child: Text(
+                                      firstPart,
+                                      textAlign: TextAlign.justify,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 13,
+                                        fontFamily: 'Jellee',
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                secondPart,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 13,
+                                  fontFamily: 'Jellee',
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                              Gap(16),
+                              Text(
+                                game.rules,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: 'Jellee',
+                                  fontWeight: FontWeight.w700,
+                                  height: 0,
                                 ),
                               ),
                             ],
                           ),
-                          Text(
-                            secondPart,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontFamily: 'Jellee',
-                              fontWeight: FontWeight.w700,
-                            ),
-                            textAlign: TextAlign.justify,
-                          ),
-                          Gap(16),
-                          Text(
-                            game.rules,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'Jellee',
-                              fontWeight: FontWeight.w700,
-                              height: 0,
-                            ),
-                          ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
           frontWidget: AppCard(
             child: Padding(

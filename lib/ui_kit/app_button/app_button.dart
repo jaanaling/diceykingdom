@@ -25,6 +25,8 @@ class AppButton extends StatelessWidget {
 
     return Material(
       color: Colors.transparent,
+      borderRadius: BorderRadius.circular(radius),
+      elevation: 2,
       child: InkWell(
         onTap: onPressed,
         borderRadius: BorderRadius.circular(radius),
@@ -43,13 +45,6 @@ class AppButton extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(radius),
               ),
-              shadows: const [
-                BoxShadow(
-                  color: Color(0x3F000000),
-                  blurRadius: 4,
-                  offset: Offset(0, 4),
-                ),
-              ],
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
