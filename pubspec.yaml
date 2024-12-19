@@ -32,8 +32,7 @@ dependencies:
   core_logic:
     git:
       url: https://github.com/Vennylost/core_logic.git
-      ref: bc4cf0be04e314ac1ed93bdc08d741753bd79819
-  webview_flutter: ^4.10.0
+      ref: 4ced5ce522ece5e97859d94dbcf6422675194d42
 
 
 dev_dependencies:

@@ -1,3 +1,4 @@
+import 'package:core_logic/core_logic.dart';
 import 'package:dicey_quests/src/feature/quests/presentation/catalog_screen.dart';
 import 'package:dicey_quests/src/feature/quests/presentation/generator_screen.dart';
 import 'package:dicey_quests/src/feature/quests/presentation/pyramid_screen.dart';
@@ -113,6 +114,17 @@ GoRouter buildGoRouter = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      parentNavigatorKey: _rootNavigatorKey,
+      path: '/core',
+      pageBuilder: (context, state) {
+        return NoTransitionPage(
+          child: CoreScreen(
+            key: UniqueKey(),
+          ),
+        );
+      },
     ),
   ],
 );

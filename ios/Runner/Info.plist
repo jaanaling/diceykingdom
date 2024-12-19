@@ -47,5 +47,30 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<!-- PUSH NOTIFICATIONS CONFIG -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
+    <!-- PUSH NOTIFICATIONS CONFIG -->
+
+    <!-- FACEBOOK SDK CONFIG -->
+    <key>CFBundleURLTypes</key>
+    <array>
+    <dict>
+       <key>CFBundleURLSchemes</key>
+       <array>
+          <string>fb1346626916465358</string>
+       </array>
+    </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>1346626916465358</string>
+    <key>FacebookClientToken</key>
+    <string>bf05ead0ed9b810af388d82535789b37</string>
+    <key>FacebookDisplayName</key>
+    <string>Dicey Quest</string>
+    <!-- FACEBOOK SDK CONFIG -->
 </dict>
 </plist>

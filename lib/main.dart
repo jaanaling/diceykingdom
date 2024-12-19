@@ -5,6 +5,9 @@ import 'package:dicey_quests/src/core/dependency_injection.dart';
 import 'package:dicey_quests/src/feature/app/presentation/app_root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'firebase_options.dart';
 
 void main() async {
   runZonedGuarded(() async {
@@ -14,6 +17,10 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     setupDependencyInjection();
 
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
     await InitializationUtil.coreInit(
       domain: 'diceyquestaa.com',
       amplitudeKey: '1939384d12b2ba6f563f5e267e18b487',
@@ -21,6 +28,8 @@ void main() async {
       appId: 'com.dicefox.diceyquest',
       iosAppId: '6739356945',
       initialRoute: '/home',
+      facebookClientToken: 'bf05ead0ed9b810af388d82535789b37',
+      facebookAppId: '1346626916465358',
     );
 
     SystemChrome.setPreferredOrientations([
