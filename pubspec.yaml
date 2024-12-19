@@ -22,7 +22,6 @@ dependencies:
   flutter_spinkit: ^5.2.1
   flutter_localizations:
     sdk: flutter
-  image_picker: ^1.1.2
   advertising_id: ^2.7.1
   printing: ^5.13.4
   pdf: ^3.11.1
