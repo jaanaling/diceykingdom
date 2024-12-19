@@ -1,23 +1,17 @@
-import 'dart:ui' as ui;
-import 'package:dicey_quests/routes/go_router_config.dart';
 import 'package:dicey_quests/routes/route_value.dart';
 import 'package:dicey_quests/src/core/utils/log.dart';
 import 'package:dicey_quests/src/feature/game/bloc/game_bloc.dart';
 import 'package:dicey_quests/src/feature/game/model/challenge.dart';
 import 'package:dicey_quests/src/feature/game/model/game.dart';
 import 'package:dicey_quests/src/feature/quests/presentation/show_card_dialog.dart';
-import 'package:dicey_quests/ui_kit/app_button/app_button.dart';
-import 'package:dicey_quests/ui_kit/app_card.dart';
-import 'package:dicey_quests/ui_kit/app_container.dart';
+import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_flip_card/controllers/flip_card_controllers.dart';
-import 'package:flutter_flip_card/flipcard/flip_card.dart';
-import 'package:flutter_flip_card/modal/flip_side.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class PyramidScreen extends StatelessWidget {
@@ -43,8 +37,10 @@ class PyramidScreen extends StatelessWidget {
               .length
               .toDouble();
 
-          double progress =
-          (totalChallenges > 0 ? completedChallenges / totalChallenges : 0.0)*100;
+          double progress = (totalChallenges > 0
+                  ? completedChallenges / totalChallenges
+                  : 0.0) *
+              100;
 
           logger.d(progress);
           logger.d(totalChallenges);
@@ -58,8 +54,17 @@ class PyramidScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                
+                  child: CupertinoButton(
+                      padding: EdgeInsets.only(left: 10,top: 50),
+                      onPressed: () =>
+                          context.push("${RouteValue.home.path}/privicy"),
+                      child: Icon(Icons.privacy_tip_sharp, color: Colors.white,)),
+                ),
                 SizedBox(
-                  height:MediaQuery.of(context).size.height * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.5,
                   child: ListView.separated(
                     reverse: true,
                     itemCount: challengesByLevel.length,
@@ -80,8 +85,10 @@ class PyramidScreen extends StatelessWidget {
 
                         // Ограничиваем высоту и ширину внутреннего скролла
                         SizedBox(
-                          height:isIpad?MediaQuery.of(context).size.width * 0.1: MediaQuery.of(context).size.width * 0.15,
-                          width:  MediaQuery.of(context).size.width * 0.8,
+                          height: isIpad
+                              ? MediaQuery.of(context).size.width * 0.1
+                              : MediaQuery.of(context).size.width * 0.15,
+                          width: MediaQuery.of(context).size.width * 0.8,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: challengesByLevel[levelIndex]
@@ -121,18 +128,24 @@ class PyramidScreen extends StatelessWidget {
                           gradient: LinearGradient(
                             begin: Alignment(0.00, -1.00),
                             end: Alignment(0, 1),
-                            colors: [Color(0xFFC432E1), Color(0xFF9C13B7), Color(0xFF9B29B2)],
+                            colors: [
+                              Color(0xFFC432E1),
+                              Color(0xFF9C13B7),
+                              Color(0xFF9B29B2)
+                            ],
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(59),
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 4, horizontal: 8),
                           child: StepProgressIndicator(
                             totalSteps: totalChallenges.ceil(),
                             currentStep: completedChallenges.ceil(),
-                            fallbackLength: MediaQuery.of(context).size.width * 0.625,
+                            fallbackLength:
+                                MediaQuery.of(context).size.width * 0.625,
                             size: 14,
                             padding: 0,
                             roundedEdges: Radius.circular(17),
@@ -175,6 +188,9 @@ class PyramidScreen extends StatelessWidget {
                 Spacer(
                   flex: 2,
                 ),
+                SizedBox(
+                  height: 20,
+                )
               ],
             ),
           );
@@ -217,12 +233,70 @@ class PyramidScreen extends StatelessWidget {
         onTap: () => showCardDialog(context, game),
         borderRadius: BorderRadius.circular(32),
         child: Ink.image(
-          width: isIpad? MediaQuery.of(context).size.width * 0.08: MediaQuery.of(context).size.width * 0.12,
-          height:isIpad? MediaQuery.of(context).size.width * 0.08:  MediaQuery.of(context).size.width * 0.12,
+          width: isIpad
+              ? MediaQuery.of(context).size.width * 0.08
+              : MediaQuery.of(context).size.width * 0.12,
+          height: isIpad
+              ? MediaQuery.of(context).size.width * 0.08
+              : MediaQuery.of(context).size.width * 0.12,
           fit: BoxFit.cover,
           image: AssetImage(
             image,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class PrivicyScreen extends StatefulWidget {
+  const PrivicyScreen({super.key});
+
+  @override
+  State<PrivicyScreen> createState() => _PrivicyScreenState();
+}
+
+class _PrivicyScreenState extends State<PrivicyScreen> {
+  late final WebViewController _controller;
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: CupertinoColors.black,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+    );
+
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      backgroundColor: Colors.white,
+      navigationBar: CupertinoNavigationBar(
+        middle: const Text('Privacy Policy'),
+        leading: CupertinoNavigationBarBackButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      child: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: WebViewWidget(
+                controller: _controller
+                  ..loadRequest(Uri.parse("https://diceyquestaa.com/privacy"))
+                  ..setBackgroundColor(
+                    Colors.white,
+                  ),
+              ),
+            ),
+          ],
         ),
       ),
     );

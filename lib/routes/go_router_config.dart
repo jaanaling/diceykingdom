@@ -46,10 +46,22 @@ GoRouter buildGoRouter = GoRouter(
           navigatorKey: _homeNavigatorKey,
           routes: <RouteBase>[
             GoRoute(
-              parentNavigatorKey: _homeNavigatorKey,
-              path: RouteValue.home.path,
-              builder: (context, state) => PyramidScreen(key: UniqueKey()),
-            ),
+                parentNavigatorKey: _homeNavigatorKey,
+                path: RouteValue.home.path,
+                builder: (context, state) => PyramidScreen(key: UniqueKey()),
+                routes: [
+                  GoRoute(
+                    parentNavigatorKey: _rootNavigatorKey,
+                    path: RouteValue.privicy.path,
+                    pageBuilder: (context, state) {
+                      return NoTransitionPage(
+                        child: PrivicyScreen(
+                          key: UniqueKey(),
+                        ),
+                      );
+                    },
+                  ),
+                ]),
           ],
         ),
         StatefulShellBranch(

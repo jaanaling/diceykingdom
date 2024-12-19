@@ -24,6 +24,8 @@ enum RouteValue {
     path: 'tamples',
   ),
 
+  privicy(path: 'privicy'),
+
   unknown(
     path: '',
   );
